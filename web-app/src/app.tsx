@@ -1,10 +1,8 @@
 import React from 'react';
+import { MainRouting } from './routes';
 
 const App: React.FC = () => {
-  return (
-    <>
-    </>
-  );
-}
+  return <MainRouting />
+} 
 
 export default App;

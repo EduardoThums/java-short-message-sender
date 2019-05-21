@@ -40,15 +40,20 @@ export function LoginCard({ login }: Props) {
 
     return (
         <div className={styles.loginCard}>
-            <span>Message Sender</span>
+            <span className={styles.title}>Message Sender</span>
             <form onSubmit={doLogin}>
                 <SFormInput<Login> type="text" id="username" handleChange={handleLoginInputChange} value={loginForm.username} label="Username" />
                 <SFormInput<Login> type="password" id="password" handleChange={handleLoginInputChange} value={loginForm.password} label="Password" />
-                <input type="checkbox" checked={rememberMe} onChange={handleRememberMeChange} />
 
-                <input type="submit" value="Login" />
+                <label className={styles.checkbox}>
+                    <input type="checkbox" checked={rememberMe} onChange={handleRememberMeChange} />
+                    <span>Remember Me</span>
+                </label>
 
-                <Link to="/signup"> Don't have an account? Sign up </Link>
+                <div className={styles.buttons}>
+                    <button > Login </button>
+                    <Link to="/signup"> Sign up </Link>
+                </div>
             </form>
         </div>
     )

@@ -14,9 +14,11 @@ export function LoginPage() {
             password
         })
 
+        const tokenKey = 'accessToken'
+
         rememberMe ?
-            localStorage.setItem('token', token) :
-            sessionStorage.setItem('token', token)
+            localStorage.setItem(tokenKey, token) :
+            sessionStorage.setItem(tokenKey, token)
 
     }
 

@@ -1,4 +1,5 @@
 import React, { ChangeEvent } from 'react'
+import styles from './s-input.module.sass'
 
 interface Props<F> {
     id: keyof F & string
@@ -10,7 +11,7 @@ interface Props<F> {
 }
 
 export function SFormInput<F>({ handleChange, id, value, className, label, type }: Props<F>) {
-    
+
     function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
         const target = e.target
         const value = target.value
@@ -27,10 +28,10 @@ export function SFormInput<F>({ handleChange, id, value, className, label, type 
             <label htmlFor={id}>{label}</label>
         ) : null
     }
-    
+
     return (
-        <div>
-            <input type={type} onChange={handleInputChange} id={id} value={value} className={`${className}`}/>
+        <div className={`${styles.sInput} ${className}`}>
+            <input type={type} onChange={handleInputChange} id={id} value={value} />
             {renderLabel()}
         </div>
     )

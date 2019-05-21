@@ -1,24 +1,76 @@
+@import "variables"
+@import "mixins"
+
 .loginCard
     display: flex
     flex-direction: column
-    justify-content: center
-    align-items: center
 
-    width: 40vw
-    min-width: 250px
+    width: 45vw
+    min-width: 275px
     max-width: 400px
 
-    height: 40vh
-    min-height: 200px
-    max-height: 300px
+    height: 50vh
+    min-height: 250px
+    max-height: 400px
     
     background: #ffffff
 
     box-shadow: 0 0 10px rgba(0,0,0,.4)
+    padding: 10px
+
+    .title
+        display: flex
+        align-items: center
+        justify-content: center
+        font-size: 26px
+        font-weight: bold
+        color: $primaryColor
+        height: 25%
 
     form
         display: flex
         flex-direction: column
-        justify-content: center
+        justify-content: space-around
         align-items: center
         width: 100%
+        flex: 1
+
+        .checkbox
+            margin: 10px
+
+            input
+                opacity: 0
+                position: absolute
+
+                &:checked + span::before
+                    transform: translateY(-10%) rotate(45deg)
+                    top: 50%
+                    left: 15px
+                    width: 5px
+                    margin: 0 10px
+                    border-top: none
+                    border-left: none
+                    border-color: lawngreen
+                    
+            span 
+                display: flex   
+                position: relative
+                align-items: center
+                cursor: pointer
+                user-select: none
+                
+                &::before
+                        content: ""
+                        display: inline-block
+                        width: 15px
+                        height: 15px
+                        border: 2px solid $primaryColor
+                        transition-duration: .1s
+                        margin: 0 2px
+
+        .buttons
+            display: flex
+
+            *
+                @include materialButton()
+

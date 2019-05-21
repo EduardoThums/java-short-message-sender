@@ -1,0 +1,27 @@
+@import "variables"
+
+.sInput
+    display: flex
+    flex-direction: column-reverse
+    align-items: center
+
+    width: 90%
+    
+    margin: 5px 0
+
+    input
+        border: none
+        border-bottom: 1px solid $primaryColor
+        outline: none
+        text-align: center
+        width: 70%
+        font-size: 0.9em
+
+        &:focus + label
+            color: $primaryColor
+            cursor: default
+
+    label
+        margin: 2px
+        cursor: pointer
+

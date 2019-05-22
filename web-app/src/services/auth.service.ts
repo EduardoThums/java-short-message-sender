@@ -1,4 +1,4 @@
-import { Login } from "../model";
+import { Login } from "../model" 
 
 export async function authenticate(login: Login) {
     // const response = await api.post<string>('auth', login)

@@ -2,8 +2,8 @@ import React from 'react'
 import styles from './login.module.sass'
 
 import { LoginCard } from '../../components'
-import { authenticate } from '../../services/auth.service';
-import { Login } from '../../model';
+import { authenticate } from '../../services/auth.service'
+import { Login } from '../../model'
 
 export function LoginPage() {
 

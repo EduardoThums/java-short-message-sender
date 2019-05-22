@@ -1,10 +1,10 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom' 
 
 import styles from './login-card.module.sass'
 
-import { SFormInput } from '../generics';
-import { Login } from '../../model';
+import { SFormInput } from '../generics' 
+import { Login } from '../../model' 
 
 interface Props {
     login: (login: Login & { rememberMe: boolean }) => void
@@ -40,7 +40,6 @@ export function LoginCard({ login }: Props) {
 
     return (
         <div className={styles.loginCard}>
-            <span className={styles.title}>Message Sender</span>
             <form onSubmit={doLogin}>
                 <SFormInput<Login> type="text" id="username" handleChange={handleLoginInputChange} value={loginForm.username} label="Username" />
                 <SFormInput<Login> type="password" id="password" handleChange={handleLoginInputChange} value={loginForm.password} label="Password" />

@@ -1,8 +1,13 @@
-import React from 'react';
-import { MainRouting } from './routes';
+import React from 'react'
+import { MainRouting } from './routes'
+import { GlobalContext } from './context'
 
 const App: React.FC = () => {
-  return <MainRouting />
-} 
+  return (
+    <GlobalContext>
+      <MainRouting />
+    </GlobalContext>
+  )
+}
 
-export default App;
+export default App 

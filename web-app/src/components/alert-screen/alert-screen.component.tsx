@@ -1,7 +1,9 @@
 import React, { useContext } from 'react'
 import { AlertsContext } from '../../context/contexts/alerts.context'
-import { Alert } from './alert/alert.component'
+import { AlertComponent } from './alert/alert.component'
 import { RemoveAlertAction } from '../../context/actions/alerts.actions'
+
+import styles from './alert-screen.module.sass'
 
 export function AlertScreen() {
     const [{ alerts }, alertDispatch] = useContext(AlertsContext)
@@ -12,11 +14,11 @@ export function AlertScreen() {
 
     function renderAlerts() {
         return alerts.map((alert) => (
-            <Alert alert={alert} close={closeAlert} />
+            <AlertComponent alert={alert} close={closeAlert} secondsToClose={5} />
         ))
     }
 
-    return <div>
-
-    </div>
+    return alerts.length ? (<div className={styles.alertScreen}>
+        {renderAlerts()}
+    </div>) : null
 }

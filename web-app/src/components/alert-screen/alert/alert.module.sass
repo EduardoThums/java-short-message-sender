@@ -1,0 +1,78 @@
+@import "variables"
+
+$alertHeight: 100px
+$alertWidth: 200px
+$headerHeight: 35px
+
+.alertCard
+    height: $alertHeight
+    width: $alertWidth
+    background: $surfaceColor
+    margin: 10px 10px 10px
+    filter: drop-shadow(0 0 5px rgba($color: #000000, $alpha: .4))
+
+    header
+        position: relative
+        display: flex
+        align-items: center
+        justify-content: flex-end
+        height: $headerHeight
+
+        .symbol
+            position: absolute
+            left: 0
+            height: calc(#{$headerHeight} - 5px)
+            width: calc(#{$headerHeight} - 5px)
+            margin: 0 5px
+
+            &.success
+                fill: $successColor
+
+            &.danger
+                fill: $dangerColor
+            
+            &.warning
+                fill: $warningColor
+
+        .alertButton
+            display: flex
+            align-items: center
+            justify-content: center
+            height: calc(#{$headerHeight} - 5px)
+            width: calc(#{$headerHeight} - 5px)
+            margin: 2.5px
+            background: none
+            border: none
+            cursor: pointer
+            border-radius: 100%
+            outline: none
+
+            &:active
+                transition: .2s
+                background: rgba($color: #000000, $alpha: .4)
+
+            svg
+                height: 80%
+                width: 80%
+
+
+    .message
+        display: flex
+        align-items: center
+        justify-content: center
+        width: 100%
+        height: calc(100% - #{$headerHeight})
+        text-align: center
+        padding: 5px
+
+        &.success
+            color: $successColor
+            font-weight: bold
+
+        &.danger
+            color: $dangerColor
+            font-weight: bold
+        
+        &.warning
+            color: $warningColor
+            font-weight: bold

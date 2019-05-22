@@ -1,6 +1,6 @@
 export enum AlertStatus {
     SUCCESS = 'success',
-    ERROR = 'error',
+    DANGER = 'danger',
     WARNING = 'warning',
     COMMON = 'common'
 }

@@ -20,16 +20,20 @@ export function LoginPage() {
             }))
         }
 
-        const token = await authenticate({
-            username,
-            password
-        })
+        try {
+            const token = await authenticate({
+                username,
+                password
+            })
 
-        const tokenKey = 'accessToken'
+            const tokenKey = 'accessToken'
 
-        rememberMe ?
-            localStorage.setItem(tokenKey, token) :
-            sessionStorage.setItem(tokenKey, token)
+            rememberMe ?
+                localStorage.setItem(tokenKey, token) :
+                sessionStorage.setItem(tokenKey, token)
+        } catch (error) {
+
+        }
 
     }
 

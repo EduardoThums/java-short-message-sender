@@ -10,7 +10,7 @@ export function AlertScreen() {
         alertDispatch(new RemoveAlertAction(id))
     }
 
-    function renderAlert() {
+    function renderAlerts() {
         return alerts.map((alert) => (
             <Alert alert={alert} close={closeAlert} />
         ))

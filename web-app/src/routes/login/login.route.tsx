@@ -18,6 +18,7 @@ export function LoginPage() {
                 text: "You can't leave empty fields",
                 status: AlertStatus.DANGER
             }))
+            return
         }
 
         try {

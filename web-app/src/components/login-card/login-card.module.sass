@@ -19,6 +19,14 @@ $cardColor: $surfaceColor
     
     padding: 10px
 
+    .title
+        font-size: 24px
+        color: $primaryColor
+        text-align: center
+        margin: 5px 0 15px 
+        font-weight: bold
+
+
     form
         display: flex
         flex-direction: column
@@ -119,3 +127,9 @@ $cardColor: $surfaceColor
         left: inherit
         border-top-left-radius: 10px
         border-top-right-radius: 10px 
+
+        &::before
+            border: none
+
+        &::after
+            border: none

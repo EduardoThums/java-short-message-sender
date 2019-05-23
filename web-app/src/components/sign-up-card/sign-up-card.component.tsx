@@ -6,9 +6,9 @@ interface Props {
     signUp(signUp: SignUp): void
 }
 
-export function SignUpCard(props: Props) {
+export function SignUpCard({ signUp }: Props) {
 
     return <div>
-        
+
     </div>
 }

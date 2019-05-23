@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Alert, AlertStatus } from '../../../model'
 import { SuccessIcon, ErrorIcon, WarningIcon, CloseIcon } from '../../../resources';
 

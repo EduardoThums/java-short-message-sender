@@ -1,7 +1,7 @@
 import React from 'react'
 import { MainRouting } from './routes'
 import { GlobalContext } from './context'
-import { AlertScreen } from './components/alert-screen/alert-screen.component';
+import { AlertScreen } from './components';
 
 const App: React.FC = () => {
   return (

@@ -51,7 +51,7 @@ export function LoginCard({ login }: Props) {
 
                 <div className={styles.buttons}>
                     <button > Login </button>
-                    <Link to="/signup"> Sign up </Link>
+                    <Link to="/sign-up"> Sign up </Link>
                 </div>
             </form>
         </div>

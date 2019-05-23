@@ -1,9 +1,11 @@
 import React from 'react'
 
+import styles from './sign-up.module.sass'
+
 export function SignUpPage() {
 
     return (
-        <div>
+        <div className={styles.signUpPage}>
 
         </div>
     )

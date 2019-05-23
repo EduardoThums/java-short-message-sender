@@ -1,10 +1,11 @@
 @import "variables"
-    
+@import "mixins"
+
 .loginPage
     display: flex
     align-items: center
     justify-content: center
     height: 100%
     width: 100%
-    background: linear-gradient(to right bottom, $primaryColor, $secondaryColor)
     overflow: hidden
+    @include gradientBackground()

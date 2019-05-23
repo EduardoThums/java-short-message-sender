@@ -1,23 +1,19 @@
 @import "variables"
 @import "mixins"
 
-$cardSize: 300px
+$cardSize: 350px
+$cardColor: $surfaceColor
 
 .loginCard
-    position: absolute
     display: flex
     flex-direction: column
 
-    background: #ffffff
+    background: $cardColor
 
     width: $cardSize
-    min-width: 300px
 
     height: $cardSize
-    min-height: 300px
 
-    bottom: 0
-    right: 0
 
     filter: drop-shadow( 0 0 10px rgba($color: #000000, $alpha: .2))
     
@@ -80,10 +76,10 @@ $cardSize: 300px
         position: absolute
         height: 0
         width: 0
-        border-bottom: calc(#{$cardSize} - 100px) solid white
-        border-right: 0 solid white
-        border-top: 0 solid transparent
-        border-left: $cardSize solid transparent
+        border-bottom: calc(#{($cardSize / 2) - 50px}) solid $cardColor
+        border-right: calc(#{$cardSize / 2}) solid transparent
+        border-top: calc(#{$cardSize / 2}) solid transparent
+        border-left: calc(#{$cardSize / 2}) solid transparent
         top: 0
         right: 0
         transform: translateY(-100%)
@@ -93,17 +89,21 @@ $cardSize: 300px
         position: absolute
         height: 0
         width: 0
-        border-bottom: $cardSize solid white
-        border-right: 0 solid white
-        border-top: 0 solid transparent
-        border-left: calc(#{$cardSize} - 100px) solid transparent
+        border-bottom: calc(#{$cardSize / 2}) solid transparent
+        border-right: calc(#{$cardSize / 2}) solid transparent
+        border-top: calc(#{($cardSize / 2) - 50px}) solid $cardColor
+        border-left: calc(#{$cardSize / 2}) solid transparent
+        bottom: 0
         left: 0
-        top: 0
-        transform: translateX(-100%)
+        transform: translateY(100%)
 
 @media only screen and (max-width: 650px) 
   .loginCard
         position: static
+        
+        width: calc(#{$cardSize - 50px})
+        height: calc(#{$cardSize - 50px})
+
 
         &::before
             border: none

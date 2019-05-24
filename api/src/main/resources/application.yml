@@ -16,3 +16,6 @@ security:
     expiration: 86400000
   public:
     path: "/public/**"
+
+pagination:
+  default-size: 50

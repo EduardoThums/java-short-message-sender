@@ -4,7 +4,9 @@
 $cardSize: 350px
 $cardColor: $surfaceColor
 
-.loginCard
+.signUpCard
+    position: absolute
+
     display: flex
     flex-direction: column
 
@@ -12,22 +14,22 @@ $cardColor: $surfaceColor
 
     width: $cardSize
 
-    height: $cardSize
+    max-height: calc(#{$cardSize + 50px})
 
-
-    filter: drop-shadow( 0 0 10px rgba($color: #000000, $alpha: .2))
-    
-    padding: 10px
 
     .title
         font-size: 24px
         color: $primaryColor
         text-align: center
-        margin: 5px 0 15px 
+        margin: 5px 0 5px 
         font-weight: bold
 
-    
-
+    .subtitle
+        font-size: 16px
+        color: $secondaryColor
+        text-align: center
+        margin: 5px 0 15px 
+        font-weight: bold
 
     form
         display: flex
@@ -37,49 +39,13 @@ $cardColor: $surfaceColor
         width: 100%
         flex: 1
         margin: 5px 0
-
-        .checkbox
-            margin: 10px
-
-            input
-                opacity: 0
-                position: absolute
-
-                &:checked + span
-                    color: $successColor
-
-                &:checked + span::before
-                    transform: translateY(-10%) rotate(45deg)
-                    top: 50%
-                    left: 15px
-                    width: 5px
-                    margin: 0 10px
-                    border-top: none
-                    border-left: none
-                    border-color: $successColor
-                    
-            span 
-                display: flex   
-                position: relative
-                align-items: center
-                cursor: pointer
-                user-select: none
-                transition-duration: .1s
-                
-                &::before
-                        content: ""
-                        display: inline-block
-                        width: 15px
-                        height: 15px
-                        border: 2px solid $primaryColor
-                        margin: 0 2px
-                        transition-duration: .1s
-
+    
         .buttons
-            display: flex
+                display: flex
+                margin: 5px 0
 
-            *
-                @include materialButton()
+                *
+                    @include materialButton()
 
     &::after
 
@@ -109,11 +75,11 @@ $cardColor: $surfaceColor
         transform: translateY(100%)
 
 @media only screen and (max-width: 650px) 
-  .loginCard
+  .signUpCard
         position: static
         
         width: calc(#{$cardSize - 50px})
-        height: calc(#{$cardSize - 50px})
+        height: calc(#{$cardSize})
 
 
         &::before
@@ -123,7 +89,7 @@ $cardColor: $surfaceColor
             border: none
 
 @media only screen and (max-height: 550px) and (max-width: 800px) 
-  .loginCard
+  .signUpCard
         position: absolute
         bottom: 0
         right: inherit
@@ -136,3 +102,6 @@ $cardColor: $surfaceColor
 
         &::after
             border: none
+
+
+

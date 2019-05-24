@@ -30,7 +30,7 @@ export function SFormInput<F>({ handleChange, id, value, className, label, type 
     }
 
     return (
-        <div className={`${styles.sInput} ${className}`}>
+        <div className={`${styles.sInput} ${className || ''}`}>
             <input type={type} onChange={handleInputChange} id={id} value={value} />
             {renderLabel()}
         </div>

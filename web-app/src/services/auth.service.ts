@@ -1,7 +1,7 @@
-import { Login } from "../model" 
+import { Login } from "../model"
+import { publicApi } from "./api.service";
 
 export async function authenticate(login: Login) {
-    // const response = await api.post<string>('auth', login)
-    // return response.data
-    return 'aaaaa'
+    const response = await publicApi.post<{ token: string }>('login', login)
+    return await response.data
 }

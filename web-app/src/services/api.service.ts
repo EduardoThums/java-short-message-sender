@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { storageKeys } from '../utils';
 
-const BASE_API_URL = 'http://localhost:8080/'
+const BASE_API_URL = 'http://localhost:8080'
 
 export const api = axios.create({
     baseURL: `${BASE_API_URL}/`,

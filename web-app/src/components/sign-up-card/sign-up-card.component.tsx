@@ -21,6 +21,8 @@ export function SignUpCard({ signUp }: Props) {
 
     function doSignUp(e: FormEvent<HTMLFormElement>) {
         e.preventDefault()
+
+        signUp(signUpForm)
     }
 
     function handleFormChange({ id, value }: { id: keyof SignUpForm & string, value: string }) {

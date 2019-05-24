@@ -16,7 +16,7 @@ export function LoginPage() {
 
         if (!username || !password) {
             alertDispatch(new AddAlertAction({
-                text: "You can't leave empty fields",
+                text: "Não deixe campos em branco",
                 status: AlertStatus.DANGER
             }))
             return

@@ -15,26 +15,31 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-@EqualsAndHashCode(of = "id")
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class UserPrincipal implements UserDetails {
 
     private static final String DEFAULT_ROLE = "USER";
+
+    @EqualsAndHashCode.Include
     private Long id;
 
     private String username;
 
-    @JsonIgnore
     private String password;
+
+    private String imageUrl;
 
     private Collection<? extends GrantedAuthority> authorities;
 
     public UserPrincipal(Long id,
                          String name,
                          String password,
+                         String imageUrl,
                          Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
         this.username = name;
         this.password = password;
+        this.imageUrl = imageUrl;
         this.authorities = authorities;
     }
 
@@ -48,6 +53,7 @@ public class UserPrincipal implements UserDetails {
                 userEntity.getId(),
                 userEntity.getUsername(),
                 userEntity.getPassword(),
+                userEntity.getImageUrl(),
                 authorities
         );
     }

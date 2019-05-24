@@ -1,11 +1,18 @@
 package br.ifsul.lp3.messagesender.api.service.user;
 
+import br.ifsul.lp3.messagesender.api.component.CustomPageResponseComponent;
+import br.ifsul.lp3.messagesender.api.config.security.CustomUserDetailsService;
 import br.ifsul.lp3.messagesender.api.domain.entity.UserEntity;
 import br.ifsul.lp3.messagesender.api.exception.IllegalUserException;
+import br.ifsul.lp3.messagesender.api.mapper.UserResponseMapper;
 import br.ifsul.lp3.messagesender.api.repository.user.UserRepository;
 import br.ifsul.lp3.messagesender.api.web.controller.authentication.request.RegisterAuthenticationRequest;
+import br.ifsul.lp3.messagesender.api.web.controller.user.response.UserResponse;
+import org.springframework.data.domain.Page;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -14,9 +21,18 @@ public class UserServiceImpl implements UserService {
 
     private PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    private CustomUserDetailsService customUserDetailsService;
+
+    private UserResponseMapper userResponseMapper;
+
+    private CustomPageResponseComponent customPageResponseComponent;
+
+    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder, CustomUserDetailsService customUserDetailsService, UserResponseMapper userResponseMapper, CustomPageResponseComponent customPageResponseComponent) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.customUserDetailsService = customUserDetailsService;
+        this.userResponseMapper = userResponseMapper;
+        this.customPageResponseComponent = customPageResponseComponent;
     }
 
     @Override
@@ -31,5 +47,14 @@ public class UserServiceImpl implements UserService {
         userEntity.setImageUrl(request.getImageUrl());
 
         userRepository.save(userEntity);
+    }
+
+    @Override
+    public Page<UserResponse> findAll(int page) {
+        final Long userId = customUserDetailsService.getUser().getId();
+        final List<UserEntity> userEntities = userRepository.findAllExceptByLoggedUser(userId);
+        final List<UserResponse> userResponses = userResponseMapper.mapUserEntityToUserResponse(userEntities);
+
+        return customPageResponseComponent.customPageResponse(userResponses, page);
     }
 }

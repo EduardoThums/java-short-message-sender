@@ -1,4 +1,4 @@
-create table user (
+create table "user" (
 	id int PRIMARY key,
 	username varchar (256) not null,
 	password varchar(512) not null,
@@ -14,6 +14,9 @@ create table if not exists message (
 	is_read boolean default false
 );
 
-ALTER TABLE message ADD CONSTRAINT fk_sender_id FOREIGN KEY ( sender_id ) REFERENCES user ( id ) ;
-ALTER TABLE message ADD CONSTRAINT fk_receiver_id FOREIGN KEY ( receiver_id ) REFERENCES user ( id ) ;
+ALTER TABLE message ADD CONSTRAINT fk_sender_id FOREIGN KEY ( sender_id ) REFERENCES "user" ( id ) ;
+ALTER TABLE message ADD CONSTRAINT fk_receiver_id FOREIGN KEY ( receiver_id ) REFERENCES "user" ( id ) ;
+
+CREATE SEQUENCE user_sequence START 1;
+CREATE SEQUENCE message_sequence START 1;
 

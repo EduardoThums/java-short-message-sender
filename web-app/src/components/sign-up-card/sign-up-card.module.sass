@@ -1,0 +1,35 @@
+@import "variables"
+@import "mixins"
+
+$cardSize: 350px
+$cardColor: $surfaceColor
+
+.signUpCard
+    display: flex
+    flex-direction: column
+
+    background: $cardColor
+
+    width: $cardSize
+
+    max-height: $cardSize
+
+    overflow-y: auto
+
+    form
+        display: flex
+        flex-direction: column
+        justify-content: space-around
+        align-items: center
+        width: 100%
+        flex: 1
+    
+    .buttons
+            display: flex
+
+            *
+                @include materialButton()
+
+
+
+

@@ -1,7 +1,7 @@
 import { SignUp } from "../model";
-import { api } from "./api.service";
+import { api, publicApi } from "./api.service";
 
 
-export function signUp(signUp: SignUp) {
-    return 'token'
+export async function signUp(signUp: SignUp) {
+    await publicApi.post('register', signUp)
 }

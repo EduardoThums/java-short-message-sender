@@ -5,6 +5,8 @@ $cardSize: 350px
 $cardColor: $surfaceColor
 
 .signUpCard
+    position: absolute
+
     display: flex
     flex-direction: column
 
@@ -12,9 +14,22 @@ $cardColor: $surfaceColor
 
     width: $cardSize
 
-    max-height: $cardSize
+    max-height: calc(#{$cardSize + 50px})
 
-    overflow-y: auto
+
+    .title
+        font-size: 24px
+        color: $primaryColor
+        text-align: center
+        margin: 5px 0 5px 
+        font-weight: bold
+
+    .subtitle
+        font-size: 16px
+        color: $secondaryColor
+        text-align: center
+        margin: 5px 0 15px 
+        font-weight: bold
 
     form
         display: flex
@@ -23,13 +38,70 @@ $cardColor: $surfaceColor
         align-items: center
         width: 100%
         flex: 1
+        margin: 5px 0
     
-    .buttons
-            display: flex
+        .buttons
+                display: flex
+                margin: 5px 0
 
-            *
-                @include materialButton()
+                *
+                    @include materialButton()
 
+    &::after
+
+        content: ''
+        position: absolute
+        height: 0
+        width: 0
+        border-bottom: calc(#{($cardSize / 2) - 50px}) solid $cardColor
+        border-right: calc(#{$cardSize / 2}) solid transparent
+        border-top: calc(#{$cardSize / 2}) solid transparent
+        border-left: calc(#{$cardSize / 2}) solid transparent
+        top: 0
+        right: 0
+        transform: translateY(-100%)
+
+    &::before
+        content: ''
+        position: absolute
+        height: 0
+        width: 0
+        border-bottom: calc(#{$cardSize / 2}) solid transparent
+        border-right: calc(#{$cardSize / 2}) solid transparent
+        border-top: calc(#{($cardSize / 2) - 50px}) solid $cardColor
+        border-left: calc(#{$cardSize / 2}) solid transparent
+        bottom: 0
+        left: 0
+        transform: translateY(100%)
+
+@media only screen and (max-width: 650px) 
+  .signUpCard
+        position: static
+        
+        width: calc(#{$cardSize - 50px})
+        height: calc(#{$cardSize})
+
+
+        &::before
+            border: none
+
+        &::after
+            border: none
+
+@media only screen and (max-height: 550px) and (max-width: 800px) 
+  .signUpCard
+        position: absolute
+        bottom: 0
+        right: inherit
+        left: inherit
+        border-top-left-radius: 10px
+        border-top-right-radius: 10px 
+
+        &::before
+            border: none
+
+        &::after
+            border: none
 
 
 

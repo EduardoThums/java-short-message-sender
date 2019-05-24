@@ -2,12 +2,12 @@ import React, { FormEvent, useState } from 'react'
 
 import styles from './sign-up-card.module.sass'
 
-import { SignUp, SignUpForm } from '../../model';
+import { SignUpForm } from '../../model';
 import { SFormInput } from '../generics';
 import { Link } from 'react-router-dom';
 
 interface Props {
-    signUp(signUp: SignUp): void
+    signUp(signUp: SignUpForm): void
 }
 
 export function SignUpCard({ signUp }: Props) {
@@ -40,7 +40,7 @@ export function SignUpCard({ signUp }: Props) {
             
                 <SFormInput<SignUpForm> type='text' id='username' label="Username" handleChange={handleFormChange} value={signUpForm.username} />
                 <SFormInput<SignUpForm> type='password' id='password' label="Password" handleChange={handleFormChange} value={signUpForm.password} />
-                <SFormInput<SignUpForm> type='password' id='password' label="Confirm Password" handleChange={handleFormChange} value={signUpForm.repeatPassword} />
+                <SFormInput<SignUpForm> type='password' id='repeatPassword' label="Confirm Password" handleChange={handleFormChange} value={signUpForm.repeatPassword} />
                 <SFormInput<SignUpForm> type='text' id='imageUrl' label="Your image's URL" handleChange={handleFormChange} value={signUpForm.imageUrl} />
 
                 <div className={styles.buttons}>

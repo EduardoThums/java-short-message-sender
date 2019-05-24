@@ -6,6 +6,7 @@ import { authenticate } from '../../services/auth.service'
 import { Login, AlertStatus } from '../../model'
 import { AlertsContext } from '../../context/contexts/alerts.context';
 import { AddAlertAction } from '../../context/actions/alerts.actions';
+import { storageKeys } from '../../utils';
 
 export function LoginPage() {
 
@@ -22,16 +23,14 @@ export function LoginPage() {
         }
 
         try {
-            const token = await authenticate({
+            const { token } = await authenticate({
                 username,
                 password
             })
 
-            const tokenKey = 'accessToken'
-
             rememberMe ?
-                localStorage.setItem(tokenKey, token) :
-                sessionStorage.setItem(tokenKey, token)
+                localStorage.setItem(storageKeys.token, token) :
+                sessionStorage.setItem(storageKeys.token, token)
         } catch (error) {
 
         }

@@ -1,5 +1,6 @@
 spring:
   datasource:
+<<<<<<< HEAD
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/message_sender
     username: postgres
@@ -16,3 +17,12 @@ security:
     expiration: 86400000
   public:
     path: "/public/**"
+=======
+    url: jdbc:mysql://localhost:3306/messagesender
+    username: root
+    password: root
+  jpa:
+    hibernate.ddl-auto: update
+    generate-ddl: true
+    show-sql: true
+>>>>>>> a7ee0da761278e622aafe8477a739b8ec96ebf4b

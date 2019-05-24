@@ -8,7 +8,7 @@ create table "user" (
 create table if not exists message (
 	id int PRIMARY key,
 	text varchar (1000) not null,
-	created_date timestamp default CURRENT_TIMESTAMP,
+	created_date timestamp default now(),
 	sender_id int not null,
 	receiver_id int not null,
 	is_read boolean default false

@@ -36,9 +36,13 @@ public class CustomUserDetailsService implements UserDetailsService {
         );
     }
 
-    public UserEntity getUser() {
+    public UserPrincipal getUser() {
         final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        return (UserEntity) Optional.ofNullable(authentication.getPrincipal()).orElse(null);
+        if (authentication == null) {
+            return null;
+        }
+
+        return (UserPrincipal) authentication.getPrincipal();
     }
 }

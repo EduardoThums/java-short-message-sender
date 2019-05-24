@@ -1,9 +1,10 @@
 package br.ifsul.lp3.messagesender.api.domain.entity;
 
 import lombok.Data;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 @Data
 @Entity
@@ -17,7 +18,9 @@ public class MessageEntity {
 
     private String text;
 
-    private LocalDateTime createdDate;
+    @CreatedDate
+    @Column(updatable = false)
+    private Instant createdDate = Instant.now();
 
     private Long senderId;
 

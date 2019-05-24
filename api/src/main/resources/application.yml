@@ -1,5 +1,23 @@
 spring:
   datasource:
+<<<<<<< HEAD
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/message_sender
+    username: postgres
+    password: root
+  jpa:
+    database: postgresql
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+security:
+  jwt:
+    secret: "message-sender-java-jwt"
+    expiration: 86400000
+  public:
+    path: "/public/**"
+=======
     url: jdbc:mysql://localhost:3306/messagesender
     username: root
     password: root
@@ -7,3 +25,4 @@ spring:
     hibernate.ddl-auto: update
     generate-ddl: true
     show-sql: true
+>>>>>>> a7ee0da761278e622aafe8477a739b8ec96ebf4b

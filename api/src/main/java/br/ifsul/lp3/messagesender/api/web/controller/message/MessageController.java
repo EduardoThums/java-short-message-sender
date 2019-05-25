@@ -21,8 +21,18 @@ public class MessageController {
         messageService.sendMessage(request);
     }
 
-    @GetMapping
-    public Page<MessageResponse> findAll(@RequestParam int page) {
-        return messageService.findAll(page);
+    @GetMapping("find-all/sent")
+    public Page<MessageResponse> findAllSent(@RequestParam int page) {
+        return messageService.findAllSent(page);
+    }
+
+    @GetMapping("find-all/received")
+    public Page<MessageResponse> findAllReceived(@RequestParam int page) {
+        return messageService.findAllReceived(page);
+    }
+
+    @PutMapping("/mark-as-read/{messageId}")
+    public void markAsRead(@PathVariable(name = "messageId") Long messageId){
+        messageService.maskAsRead(messageId);
     }
 }

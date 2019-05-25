@@ -4,6 +4,7 @@ import br.ifsul.lp3.messagesender.api.component.CustomPageResponseComponent;
 import br.ifsul.lp3.messagesender.api.config.security.CustomUserDetailsService;
 import br.ifsul.lp3.messagesender.api.domain.entity.MessageEntity;
 import br.ifsul.lp3.messagesender.api.domain.entity.UserEntity;
+import br.ifsul.lp3.messagesender.api.exception.InvalidMessageException;
 import br.ifsul.lp3.messagesender.api.exception.InvalidUserException;
 import br.ifsul.lp3.messagesender.api.mapper.MessageResponseMapper;
 import br.ifsul.lp3.messagesender.api.repository.message.MessageRepository;
@@ -52,13 +53,28 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public Page<MessageResponse> findAll(int page) {
-        final Long senderId = customUserDetailsService.getUser().getId();
-        final List<MessageEntity> messageEntities = messageRepository.findAllBySenderId(senderId);
-        final List<Long> receiverIds = messageEntities.stream().map(MessageEntity::getId).collect(Collectors.toList());
-        final List<UserEntity> userEntities = userRepository.findAllByIdIn(receiverIds);
-        final List<MessageResponse> messageResponses = messageResponseMapper.mapMessageEntityToMessageResponse(messageEntities, userEntities);
+    public Page<MessageResponse> findAllSent(int page) {
+        final Long loggedUserId = customUserDetailsService.getUser().getId();
+        final List<MessageEntity> messageEntities = messageRepository.findAllBySenderId(loggedUserId);
+        final List<MessageResponse> messageResponses = messageResponseMapper.mapMessageEntityToMessageResponse(messageEntities, false);
 
         return customPageResponseComponent.customPageResponse(messageResponses, page);
+    }
+
+    @Override
+    public Page<MessageResponse> findAllReceived(int page) {
+        final Long loggedUserId = customUserDetailsService.getUser().getId();
+        final List<MessageEntity> messageEntities = messageRepository.findAllByReceiverId(loggedUserId);
+        final List<MessageResponse> messageResponses = messageResponseMapper.mapMessageEntityToMessageResponse(messageEntities, true);
+
+        return customPageResponseComponent.customPageResponse(messageResponses, page);
+    }
+
+    @Override
+    public void maskAsRead(Long messageId) {
+        final MessageEntity messageEntity = messageRepository.findById(messageId).orElseThrow(InvalidMessageException::new);
+        messageEntity.setRead(true);
+
+        messageRepository.save(messageEntity);
     }
 }

@@ -9,4 +9,6 @@ public interface UserService {
     void save(RegisterAuthenticationRequest request);
 
     Page<UserResponse> findAll(int page);
+
+    Page<UserResponse> findAllByUsernameAutoComplete(String username, int page);
 }

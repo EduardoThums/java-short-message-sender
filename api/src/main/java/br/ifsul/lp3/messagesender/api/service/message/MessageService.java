@@ -8,5 +8,9 @@ public interface MessageService {
 
     void sendMessage(SendMessageRequest request);
 
-    Page<MessageResponse> findAll(int page);
+    Page<MessageResponse> findAllSent(int page);
+
+    Page<MessageResponse> findAllReceived(int page);
+
+    void maskAsRead(Long messageId);
 }

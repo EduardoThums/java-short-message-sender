@@ -51,8 +51,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Page<UserResponse> findAll(int page) {
-        final Long userId = customUserDetailsService.getUser().getId();
-        final List<UserEntity> userEntities = userRepository.findAllExceptByLoggedUser(userId);
+        final Long loggedUserId = customUserDetailsService.getUser().getId();
+        final List<UserEntity> userEntities = userRepository.findAllExceptByLoggedUser(loggedUserId);
+        final List<UserResponse> userResponses = userResponseMapper.mapUserEntityToUserResponse(userEntities);
+
+        return customPageResponseComponent.customPageResponse(userResponses, page);
+    }
+
+    @Override
+    public Page<UserResponse> findAllByUsernameAutoComplete(String username, int page) {
+        final Long loggedUserId = customUserDetailsService.getUser().getId();
+        final List<UserEntity> userEntities = userRepository.findAllExceptByLoggedUserAndUsernameAutoComplete(loggedUserId, username);
         final List<UserResponse> userResponses = userResponseMapper.mapUserEntityToUserResponse(userEntities);
 
         return customPageResponseComponent.customPageResponse(userResponses, page);

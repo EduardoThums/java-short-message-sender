@@ -12,8 +12,10 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
     Optional<UserEntity> findByUsername(String username);
 
-    List<UserEntity> findAllByIdIn(List<Long> usersIds);
+    @Query(value = "SELECT u.* FROM \"user\" u WHERE u.id != :userId and u.username ILIKE concat(:username, '%')", nativeQuery = true)
+    List<UserEntity> findAllExceptByLoggedUserAndUsernameAutoComplete(@Param("userId") Long userId, @Param("username") String username);
 
-    @Query("SELECT u FROM UserEntity u WHERE u.id != :userId")
+    @Query(value = "SELECT u FROM UserEntity u WHERE u.id != :userId")
     List<UserEntity> findAllExceptByLoggedUser(@Param("userId") Long userId);
+
 }

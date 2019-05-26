@@ -16,16 +16,16 @@ public class MessageResponseMapper {
 
     private UserRepository userRepository;
 
-    public MessageResponseMapper(UserRepository userRepository){
+    public MessageResponseMapper(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
-    public List<MessageResponse> mapMessageEntityToMessageResponse(List<MessageEntity> messageEntities, boolean isReceiver) {
+    public List<MessageResponse> mapMessageEntityToMessageResponse(List<MessageEntity> messageEntities) {
         return messageEntities
                 .stream()
                 .map(messageEntity -> {
 
-                    final MessageUserResponse receiverResponse = mapUserEntityToMessageUserResponse(messageEntity, isReceiver);
+                    final MessageUserResponse receiverResponse = mapUserEntityToMessageUserResponse(messageEntity);
 
                     return MessageResponse.builder()
                             .id(messageEntity.getId())
@@ -38,9 +38,8 @@ public class MessageResponseMapper {
                 .collect(Collectors.toList());
     }
 
-    private MessageUserResponse mapUserEntityToMessageUserResponse(MessageEntity messageEntity, boolean isReceiver){
-        final Long userId = isReceiver ? messageEntity.getSenderId() : messageEntity.getReceiverId();
-        final UserEntity userEntity = userRepository.findById(userId).orElseThrow(InvalidUserException::new);
+    private MessageUserResponse mapUserEntityToMessageUserResponse(MessageEntity messageEntity) {
+        final UserEntity userEntity = userRepository.findById(messageEntity.getSenderId()).orElseThrow(InvalidUserException::new);
 
         return MessageUserResponse.builder()
                 .id(userEntity.getId())

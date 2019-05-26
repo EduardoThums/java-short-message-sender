@@ -63,7 +63,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"username\": \"eduardo\",\n\t\"password\": \"123\",\n\t\"imageUrl\": \"image\"\n}"
+					"raw": "{\n\t\"username\": \"ana\",\n\t\"password\": \"123\",\n\t\"imageUrl\": \"image\"\n}"
 				},
 				"url": {
 					"raw": "{{BASE_URL}}/public/register",
@@ -97,7 +97,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"text\": \"teste\",\n\t\"receiverId\": \"1\"\n}"
+					"raw": "{\n\t\"text\": \"a\",\n\t\"receiverId\": \"2\"\n}"
 				},
 				"url": {
 					"raw": "{{BASE_URL}}/message/send",
@@ -124,7 +124,7 @@
 					}
 				],
 				"url": {
-					"raw": "{{BASE_URL}}/message/find-all/received?page=0",
+					"raw": "{{BASE_URL}}/message/find-all/received?page=0&username=pa",
 					"host": [
 						"{{BASE_URL}}"
 					],
@@ -135,39 +135,17 @@
 					],
 					"query": [
 						{
-							"key": "page",
-							"value": "0"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Find all sent message",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer {{ACCESS_TOKEN}}",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{BASE_URL}}/message/find-all/sent?page=0",
-					"host": [
-						"{{BASE_URL}}"
-					],
-					"path": [
-						"message",
-						"find-all",
-						"sent"
-					],
-					"query": [
+							"key": "text",
+							"value": "e",
+							"disabled": true
+						},
 						{
 							"key": "page",
 							"value": "0"
+						},
+						{
+							"key": "username",
+							"value": "pa"
 						}
 					]
 				}
@@ -230,6 +208,31 @@
 							"key": "page",
 							"value": "0"
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Mark message as read",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{ACCESS_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URL}}/message/mark-as-read/2",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"message",
+						"mark-as-read",
+						"2"
 					]
 				}
 			},

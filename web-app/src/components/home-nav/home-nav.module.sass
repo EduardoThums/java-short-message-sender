@@ -1,9 +1,67 @@
 @import "variables"
 
 .homeNavbar
+    position: relative
     display: flex
+
+    align-items: center
+    justify-content: center
 
     width: 100%
     height: 60px
-    background: $primaryColor
-    
+    background: $secondaryColor
+
+    filter: drop-shadow( 0 0 10px rgba($color: #000000, $alpha: .2))
+
+    .title
+        color: white
+
+        font-weight: bold
+        font-size: 24px
+
+    .user
+        position: absolute
+        display: flex
+
+        align-items: center
+
+        height: 100%
+        max-width: 35%
+
+        right: 0
+        
+        padding: 0 10px
+
+        background: $primaryColor
+
+        span
+            color: white
+            margin: 0 10px
+
+            text-overflow: ellipsis
+            overflow: hidden
+            white-space: nowrap
+
+            @media only screen and (max-width: 650px) 
+                display: none
+
+        img
+            height: 50px
+            width: 50px
+
+        &::after
+            content: ''
+            height: 0
+            width: 0
+
+            position: absolute
+
+            left: 0
+
+            transform: translateX(-100%)            
+
+            border-bottom: 30px solid $primaryColor
+            border-right: 20px solid $primaryColor
+            border-top: 30px solid transparent
+            border-left: 20px solid transparent            
+

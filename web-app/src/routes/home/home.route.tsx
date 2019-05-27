@@ -8,7 +8,10 @@ export function HomePage({ match }: RouteComponentProps) {
 
     return (
         <div className={styles.homePage}>
-            <HomeNavbar />
+            <HomeNavbar user={{
+                username: 'User Aleatorio',
+                imageUrl: ''
+            }}/>
 
             <Route exact path={`${match.url}/send`} component={() => <span> send page works </span>} />
             <Route exact path={`${match.url}/inbox`} component={() => <span> inbox page works </span>} />

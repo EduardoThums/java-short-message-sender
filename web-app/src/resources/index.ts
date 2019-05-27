@@ -4,5 +4,6 @@ export { ReactComponent as CloseIcon } from './icons/close.icon.svg'
 export { ReactComponent as SuccessIcon } from './icons/success.icon.svg'
 export { ReactComponent as WarningIcon } from './icons/warning.icon.svg'
 export { ReactComponent as ErrorIcon } from './icons/error.icon.svg'
+export { ReactComponent as HamMenuIcon } from './icons/ham_menu.icon.svg'
 
 export { default as UserDefaultImage } from './images/user.image.png'

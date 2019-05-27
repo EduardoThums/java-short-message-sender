@@ -17,4 +17,4 @@ export class RemoveAlertAction {
     constructor(public readonly id: number) { }
 }
 
-export type AlertActionTypings = AddAlertAction | RemoveAlertAction
+export type AlertActionTyping = AddAlertAction | RemoveAlertAction

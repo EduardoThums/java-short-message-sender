@@ -19,5 +19,5 @@ public class MessageResponse {
 
     private Instant createdDate;
 
-    private MessageUserResponse receiver;
+    private MessageUserResponse sender;
 }

@@ -25,12 +25,12 @@ public class MessageResponseMapper {
                 .stream()
                 .map(messageEntity -> {
 
-                    final MessageUserResponse receiverResponse = mapUserEntityToMessageUserResponse(messageEntity);
+                    final MessageUserResponse senderResponse = mapUserEntityToMessageUserResponse(messageEntity);
 
                     return MessageResponse.builder()
                             .id(messageEntity.getId())
                             .text(messageEntity.getText())
-                            .receiver(receiverResponse)
+                            .sender(senderResponse)
                             .isRead(messageEntity.isRead())
                             .createdDate(messageEntity.getCreatedDate())
                             .build();

@@ -24,4 +24,9 @@ public class UserController {
     public Page<UserResponse> findAll(@RequestParam int page) {
         return userService.findAll(page);
     }
+
+    @GetMapping("/find-logged-user")
+    public UserResponse findLoggedUser(){
+        return userService.findLoggedUser();
+    }
 }

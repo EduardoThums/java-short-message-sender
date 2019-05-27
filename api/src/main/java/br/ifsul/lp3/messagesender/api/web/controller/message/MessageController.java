@@ -17,14 +17,19 @@ public class MessageController {
         this.messageService = messageService;
     }
 
-    @PostMapping("/send")
-    public void sendMessage(@RequestBody SendMessageRequest request) {
-        messageService.sendMessage(request);
-    }
-
     @GetMapping("find-all/received")
     public Page<MessageResponse> findAllReceived(@ModelAttribute SearchMessageRequest request, @RequestParam int page) {
         return messageService.findAllReceived(page, request);
+    }
+
+    @GetMapping("find-by-id/{messageId}")
+    public MessageResponse findById(@PathVariable(name = "messageId") Long messageId){
+        return messageService.findById(messageId);
+    }
+
+    @PostMapping("/send")
+    public void sendMessage(@RequestBody SendMessageRequest request) {
+        messageService.sendMessage(request);
     }
 
     @PutMapping("/mark-as-read/{messageId}")

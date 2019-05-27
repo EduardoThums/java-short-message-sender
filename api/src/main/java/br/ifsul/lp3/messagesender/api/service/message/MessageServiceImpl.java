@@ -16,6 +16,7 @@ import br.ifsul.lp3.messagesender.api.web.controller.message.response.MessageRes
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -76,5 +77,12 @@ public class MessageServiceImpl implements MessageService {
         messageEntity.setRead(true);
 
         messageRepository.save(messageEntity);
+    }
+
+    @Override
+    public MessageResponse findById(Long messageId) {
+        final MessageEntity messageEntity = messageRepository.findById(messageId).orElseThrow(InvalidMessageException::new);
+
+        return messageResponseMapper.mapMessageEntityToMessageResponse(Collections.singletonList(messageEntity)).get(0);
     }
 }

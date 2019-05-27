@@ -115,8 +115,8 @@ public class MessageServiceTest extends AbstractUnitTest {
 
         // Assert
         Assert.assertEquals(1, responsePage.getTotalElements());
-        final MessageResponse response = responsePage.getContent().get(0);
 
+        final MessageResponse response = responsePage.getContent().get(0);
         Assert.assertEquals(mockedResponse.getId(), response.getId());
         Assert.assertEquals(mockedResponse.getText(), response.getText());
         Assert.assertEquals(mockedResponse.getCreatedDate(), response.getCreatedDate());
@@ -159,5 +159,37 @@ public class MessageServiceTest extends AbstractUnitTest {
         userPrincipal.setImageUrl("image-url");
 
         return userPrincipal;
+    }
+
+    @Test
+    public void findById(){
+        // Arrange
+        final Long messageId = 1L;
+        final MessageEntity mockedMessage = DummyObjects.newInstance(MessageEntity.class);
+        final MessageResponse mockedResponse = DummyObjects.newInstance(MessageResponse.class);
+
+        Mockito.when(messageRepository.findById(messageId)).thenReturn(Optional.of(mockedMessage));
+        Mockito.when(messageResponseMapper.mapMessageEntityToMessageResponse(Collections.singletonList(mockedMessage))).thenReturn(Collections.singletonList(mockedResponse));
+
+        // Act
+        MessageResponse response = service.findById(messageId);
+
+        // Assert
+        Assert.assertEquals(mockedResponse.getCreatedDate(), response.getCreatedDate());
+        Assert.assertEquals(mockedResponse.getId(), response.getId());
+        Assert.assertEquals(mockedResponse.getIsRead(), response.getIsRead());
+        Assert.assertEquals(mockedResponse.getText(), response.getText());
+        Assert.assertEquals(mockedResponse.getSender(), response.getSender());
+    }
+
+    @Test(expected = InvalidMessageException.class)
+    public void findByIdThrowsInvalidMessageException(){
+        // Arrange
+        final Long messageId = 1L;
+
+        Mockito.when(messageRepository.findById(messageId)).thenReturn(Optional.empty());
+
+        // Act
+        service.findById(messageId);
     }
 }

@@ -11,4 +11,6 @@ public interface UserService {
     Page<UserResponse> findAll(int page);
 
     Page<UserResponse> findAllByUsernameAutoComplete(String username, int page);
+
+    UserResponse findLoggedUser();
 }

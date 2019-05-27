@@ -4,6 +4,7 @@ import br.ifsul.lp3.messagesender.api.component.CustomPageResponseComponent;
 import br.ifsul.lp3.messagesender.api.config.security.CustomUserDetailsService;
 import br.ifsul.lp3.messagesender.api.domain.entity.UserEntity;
 import br.ifsul.lp3.messagesender.api.exception.IllegalUserException;
+import br.ifsul.lp3.messagesender.api.exception.InvalidUserException;
 import br.ifsul.lp3.messagesender.api.mapper.UserResponseMapper;
 import br.ifsul.lp3.messagesender.api.repository.user.UserRepository;
 import br.ifsul.lp3.messagesender.api.web.controller.authentication.request.RegisterAuthenticationRequest;
@@ -12,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -65,5 +67,13 @@ public class UserServiceImpl implements UserService {
         final List<UserResponse> userResponses = userResponseMapper.mapUserEntityToUserResponse(userEntities);
 
         return customPageResponseComponent.customPageResponse(userResponses, page);
+    }
+
+    @Override
+    public UserResponse findLoggedUser() {
+        final Long loggedUserId = customUserDetailsService.getUser().getId();
+        final UserEntity loggedUser = userRepository.findById(loggedUserId).orElseThrow(InvalidUserException::new);
+
+        return userResponseMapper.mapUserEntityToUserResponse(Collections.singletonList(loggedUser)).get(0);
     }
 }

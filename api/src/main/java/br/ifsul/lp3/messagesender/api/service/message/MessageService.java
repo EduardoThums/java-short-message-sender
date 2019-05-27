@@ -12,4 +12,6 @@ public interface MessageService {
     Page<MessageResponse> findAllReceived(int page, SearchMessageRequest request);
 
     void maskAsRead(Long messageId);
+
+    MessageResponse findById(Long messageId);
 }

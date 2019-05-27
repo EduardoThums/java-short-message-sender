@@ -12,6 +12,7 @@ export function HomeNavbar({ user }: Props) {
 
     return (
         <nav className={styles.homeNavbar}>
+            <button></button>
 
             <span className={styles.title}> MS </span>
 

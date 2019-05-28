@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react'
+import React, { useState, ChangeEvent, FormEvent } from 'react'
 import { Link } from 'react-router-dom' 
 
 import styles from './login-card.module.sass'

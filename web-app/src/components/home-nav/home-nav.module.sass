@@ -33,12 +33,14 @@
 
         transition: .2s
 
-        cursor: pointer
-
         padding: 0
 
+        &:hover
+            cursor: pointer
+            background: rgba($color: #fff, $alpha: .15)
+
         &:active
-            background: rgba($color: #fff, $alpha: .4)
+            background: rgba($color: #fff, $alpha: .5)
 
         svg
             fill: white
@@ -50,7 +52,9 @@
         color: white
 
         font-weight: bold
-        font-size: 24px
+        font-size: 28px
+
+        user-select: none
 
     .user
         position: absolute
@@ -74,13 +78,16 @@
             text-overflow: ellipsis
             overflow: hidden
             white-space: nowrap
+                
+            user-select: none
 
             @media only screen and (max-width: 650px) 
                 display: none
 
         img
             height: 50px
-            width: 50px
+            width: 50px    
+            user-select: none
 
         &::after
             content: ''

@@ -1,13 +1,71 @@
 @import "variables"
 
 .sidebar
-
     position: absolute
 
     height: 100%
-    width: 400px
+    width: 300px
     max-width: 80%
 
     background: $primaryColor
 
     z-index: 999
+
+    transition: .2s
+
+
+    header
+        display: flex
+
+        justify-content: center
+        align-items: center
+
+        height: 60px
+        width: 100%
+
+        .closeButton
+            position: absolute
+            display: flex
+
+            align-items: center
+            justify-content: center
+
+            background: transparent
+            border: none
+            border-radius: 100%
+
+            outline: none
+
+            height: 50px
+            width: 50px
+
+            left: 10px
+
+            transition: .2s
+
+            
+            padding: 0
+
+            &:hover
+                cursor: pointer
+                background: rgba($color: #fff, $alpha: .15)
+
+            &:active
+                background: rgba($color: #fff, $alpha: .5)
+
+            svg
+                fill: white
+                height: 65%
+                width: 65%
+
+    section
+
+
+    &.open
+        transform: translateX(0)
+        filter: drop-shadow( 0 0 10px rgba($color: #000000, $alpha: .2))
+
+    &.closed
+        transform: translateX(-100%)
+
+

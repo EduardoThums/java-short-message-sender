@@ -1,0 +1,81 @@
+@import "variables"
+
+.sendMessageCard
+    height: 80%
+    min-height: 375px
+
+    width: 65%
+    min-width: 300px
+
+    box-shadow: 0 0 5px rgba($color: #000, $alpha: .4)
+
+    header
+        display: flex
+        background: $primaryColor
+        height: 60px
+
+        align-items: center
+        justify-content: center
+
+        span
+            color: white
+            font-size: 20px
+
+    section
+        display: flex
+        flex-direction: column
+
+        align-items: center
+
+        .userSelect
+            position: relative
+            display: flex
+
+            height: 45px
+            width: 90%
+
+            align-items: center
+
+            margin: 20px 0
+
+            padding: 0 15px
+
+            box-shadow: 0 0 2px rgba($color: black, $alpha: .4)
+
+            border-radius: 25px
+
+            button
+                position: absolute
+                display: flex
+
+                align-items: center
+                justify-content: center
+
+                background: transparent
+                border: none
+                border-radius: 100%
+
+                outline: none
+
+                height: 35px
+                width: 35px
+
+                right: 5px
+
+                transition: .2s
+
+                padding: 0
+
+                &:hover
+                    cursor: pointer
+                    background: rgba($color: #000, $alpha: .15)
+
+                &:active
+                    background: rgba($color: #000, $alpha: .5)
+
+                svg
+                    fill: black
+                    height: 65%
+                    width: 65%
+
+            

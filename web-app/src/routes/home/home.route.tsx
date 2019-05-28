@@ -7,6 +7,7 @@ import { CollapsibleSidebar } from '../../components/collapsible-sidebar/collaps
 import { SendMessage } from './inner-routes/send-message/send-message.route';
 import { UserContext } from '../../context/contexts/user.context';
 import { AuthUserAction } from '../../context/actions/user.actions';
+import { getAuthUser, getUsersByPage } from '../../services/user.service';
 
 export function HomePage({ match }: RouteComponentProps) {
 
@@ -15,12 +16,11 @@ export function HomePage({ match }: RouteComponentProps) {
     const [user, userDispatch] = useContext(UserContext)
 
     useEffect(() => {
+
+        getAuthUser().then((user) => {
+            userDispatch(new AuthUserAction(user))       
+        })
         
-        userDispatch(new AuthUserAction({
-            id: 1,
-            username: 'User Teste',
-            imageUrl: ''
-        }))        
     }, [])
 
     return (

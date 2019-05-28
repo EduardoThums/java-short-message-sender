@@ -6,7 +6,7 @@ const BASE_API_URL = 'http://localhost:8080'
 export const api = axios.create({
     baseURL: `${BASE_API_URL}/`,
     transformRequest: [(data, headers) => {
-        headers['Authorization'] = localStorage.getItem(storageKeys.token) || sessionStorage.getItem(storageKeys.token)
+        headers['Authorization'] = `Bearer ${localStorage.getItem(storageKeys.token) || sessionStorage.getItem(storageKeys.token)}`
         return JSON.stringify(data)
     }],
     headers: {

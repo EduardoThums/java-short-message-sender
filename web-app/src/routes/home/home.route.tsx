@@ -1,14 +1,27 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Route, RouteComponentProps, __RouterContext } from 'react-router';
 
 import styles from './home.module.sass'
 import { HomeNavbar } from '../../components/home-nav/home-nav.component';
 import { CollapsibleSidebar } from '../../components/collapsible-sidebar/collapsible-sidebar.component';
 import { SendMessage } from './inner-routes/send-message/send-message.route';
+import { UserContext } from '../../context/contexts/user.context';
+import { AuthUserAction } from '../../context/actions/user.actions';
 
 export function HomePage({ match }: RouteComponentProps) {
 
     const { location } = useContext(__RouterContext)
+
+    const [user, userDispatch] = useContext(UserContext)
+
+    useEffect(() => {
+        
+        userDispatch(new AuthUserAction({
+            id: 1,
+            username: 'User Teste',
+            imageUrl: ''
+        }))        
+    }, [])
 
     return (
         <>
@@ -18,10 +31,7 @@ export function HomePage({ match }: RouteComponentProps) {
                 { to: `${match.url}/send`, name: "Send Message" },
             ]} actualPage={location.pathname} />
             <div className={styles.homePage}>
-                <HomeNavbar user={{
-                    username: 'User Aleatorio',
-                    imageUrl: ''
-                }} />
+                <HomeNavbar user={user || { username: '', imageUrl: '' }} />
 
                 <main>
                     <Route exact path={`${match.url}/send`} component={SendMessage} />

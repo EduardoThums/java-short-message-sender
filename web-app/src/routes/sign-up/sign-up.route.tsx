@@ -13,6 +13,14 @@ export function SignUpPage() {
 
     async function doSignUp({ username, password, repeatPassword, imageUrl }: SignUpForm) {
 
+        if (!username || !password) {
+            alertDispatch(new AddAlertAction({
+                text: "Não deixe nome de usuario ou senha em branco",
+                status: AlertStatus.DANGER
+            }))
+            return
+        }
+
         if(password !== repeatPassword) {
             alertDispatch(new AddAlertAction({
                 text: 'Senhas não correspondem',
@@ -27,8 +35,17 @@ export function SignUpPage() {
                 password,
                 imageUrl
             })
+
+            alertDispatch(new AddAlertAction({
+                text: 'Conta criada com sucesso',
+                status: AlertStatus.SUCCESS
+            }))
         } catch (error) {
-            
+            const errorMessage = error.response.data.message
+            alertDispatch(new AddAlertAction({
+                text: errorMessage,
+                status: AlertStatus.DANGER
+            }))
         }
         
     }

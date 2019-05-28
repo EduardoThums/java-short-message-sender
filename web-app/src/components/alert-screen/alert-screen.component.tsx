@@ -13,8 +13,8 @@ export function AlertScreen() {
     }
 
     function renderAlerts() {
-        return alerts.map((alert) => (
-            <AlertComponent alert={alert} close={closeAlert} secondsToClose={5} />
+        return alerts.map((alert,key) => (
+            <AlertComponent alert={alert} close={closeAlert} secondsToClose={5} key={key} />
         ))
     }
 

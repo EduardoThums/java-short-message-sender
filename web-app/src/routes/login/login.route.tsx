@@ -7,10 +7,13 @@ import { Login, AlertStatus } from '../../model'
 import { AlertsContext } from '../../context/contexts/alerts.context';
 import { AddAlertAction } from '../../context/actions/alerts.actions';
 import { storageKeys } from '../../utils';
+import { __RouterContext } from 'react-router';
 
 export function LoginPage() {
 
     const [, alertDispatch] = useContext(AlertsContext)
+    const { history } = useContext(__RouterContext)
+
 
     async function login({ username, password, rememberMe }: Login & { rememberMe: boolean }) {
 
@@ -31,8 +34,13 @@ export function LoginPage() {
             rememberMe ?
                 localStorage.setItem(storageKeys.token, token) :
                 sessionStorage.setItem(storageKeys.token, token)
-        } catch (error) {
 
+            history.push('/home')
+        } catch (error) {
+            alertDispatch(new AddAlertAction({
+                text: 'Nome de Usuario ou Senha invalidos',
+                status: AlertStatus.DANGER 
+            }))
         }
 
     }

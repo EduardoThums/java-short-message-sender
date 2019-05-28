@@ -1,5 +1,5 @@
 import { createContext, Dispatch } from "react"
-import { AlertActionTypings } from "../actions/alerts.actions"
+import { AlertActionTyping } from "../actions/alerts.actions"
 import { Alert } from "../../model"
 
 
@@ -8,12 +8,12 @@ export interface Alerts {
     alerts: Alert[]
 }
 
-type AlertsContextType = [Alerts, Dispatch<AlertActionTypings>]
+type AlertsContextType = [Alerts, Dispatch<AlertActionTyping>]
 
 
-export const INITIAL_STATE = {
+export const ALERTS_CTX_INITIAL_STATE = {
     id: 0,
     alerts: []
 }
 
-export const AlertsContext = createContext<AlertsContextType>([INITIAL_STATE, () => { }])
+export const AlertsContext = createContext<AlertsContextType>([ALERTS_CTX_INITIAL_STATE, () => { }])

@@ -37,7 +37,7 @@ export function LoginCard({ login }: Props) {
             rememberMe
         })
     }
-
+    
     return (
         <div className={styles.loginCard}>
             <span className={styles.title}> MESSAGE SENDER </span>

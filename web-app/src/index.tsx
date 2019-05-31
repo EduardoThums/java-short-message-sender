@@ -4,6 +4,9 @@ import App from './app'
 import './styles/global.sass'
 import * as serviceWorker from './serviceWorker'
 
+import 'react-quill/dist/quill.bubble.css';
+import 'react-quill/dist/quill.snow.css';
+
 ReactDOM.render(<App />, document.getElementById('root'))
 
 // If you want your app to work offline and load faster, you can change

@@ -8,6 +8,7 @@ import { SendMessage } from './inner-routes/send-message/send-message.route';
 import { UserContext } from '../../context/contexts/user.context';
 import { AuthUserAction } from '../../context/actions/user.actions';
 import { getAuthUser, getUsersByPage } from '../../services/user.service';
+import { Inbox } from './inner-routes/inbox/inbox.route';
 
 export function HomePage({ match }: RouteComponentProps) {
 
@@ -18,9 +19,9 @@ export function HomePage({ match }: RouteComponentProps) {
     useEffect(() => {
 
         getAuthUser().then((user) => {
-            userDispatch(new AuthUserAction(user))       
+            userDispatch(new AuthUserAction(user))
         })
-        
+
     }, [])
 
     return (
@@ -35,7 +36,7 @@ export function HomePage({ match }: RouteComponentProps) {
 
                 <main>
                     <Route exact path={`${match.url}/send`} component={SendMessage} />
-                    <Route exact path={`${match.url}/inbox`} component={() => <span> inbox page works </span>} />
+                    <Route exact path={`${match.url}/inbox`} component={Inbox} />
                     <Route exact path={`${match.url}/message/:id`} component={({ match }: RouteComponentProps<{ id: string }>) => <span> message {+match.params.id} page works </span>} />
                     <Route exact path={match.url} component={() => <span> home page works </span>} />
                 </main>

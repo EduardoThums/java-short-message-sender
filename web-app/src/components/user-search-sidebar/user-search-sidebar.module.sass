@@ -2,7 +2,12 @@
 
 
 .sidebar
+    display: flex
+    flex-direction: column
     position: absolute
+
+    align-items: center
+    justify-content: space-between
 
     height: 100%
     width: 300px
@@ -19,24 +24,94 @@
 
     header
         display: flex
+        flex-direction: column
 
         justify-content: center
         align-items: center
 
+        min-height: 60px
+        width: 100%
+
+        .titleSection
+            display: flex        
+
+            justify-content: center
+            align-items: center
+
+            height: 60px
+            width: 100%
+
+            span
+                position: absolute
+                color: white
+
+                left: 25px
+
+                @media only screen and (max-width: 650px) 
+                    display: none
+
+            .closeButton
+                position: absolute
+                display: flex
+
+                align-items: center
+                justify-content: center
+
+                background: transparent
+                border: none
+                border-radius: 100%
+
+                outline: none
+
+                height: 50px
+                width: 50px
+
+                right: 10px
+                top: 5px
+
+                transition: .2s
+
+                
+                padding: 0
+
+                &:hover
+                    cursor: pointer
+                    background: rgba($color: #fff, $alpha: .15)
+
+                &:active
+                    background: rgba($color: #fff, $alpha: .5)
+
+                svg
+                    fill: white
+                    height: 65%
+                    width: 65%
+    
+        .searchInput
+            
+            input
+                color: white
+                border-color: white
+
+                &::placeholder
+                    color: #fefefe
+                    opacity: .7
+
+    section
+        display: flex
+        flex-direction: column
+        
+        height: 100%
+        width: 100%
+
+    footer
+        display: flex
+        align-items: center
+        justify-content: space-around
+
         height: 60px
         width: 100%
 
-        span
-            position: absolute
-            color: white
-
-            left: 25px
-
-            @media only screen and (max-width: 650px) 
-                display: none
-
-        .closeButton
-            position: absolute
+        button
             display: flex
 
             align-items: center
@@ -48,10 +123,8 @@
 
             outline: none
 
-            height: 50px
-            width: 50px
-
-            right: 10px
+            height: 40px
+            width: 40px
 
             transition: .2s
 
@@ -64,6 +137,9 @@
 
             &:active
                 background: rgba($color: #fff, $alpha: .5)
+
+            &:disabled
+                opacity: 0
 
             svg
                 fill: white

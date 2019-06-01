@@ -61,6 +61,7 @@ export function SendMessage() {
                         ['blockquote', 'code-block'],
                     ]
                 }}
+
                     ref={(quill) => { quillInstance = quill }}
                     theme='snow'
                     placeholder="Escreva sua mensagem"

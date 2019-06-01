@@ -58,6 +58,53 @@
                 height: 65%
                 width: 65%
 
+    footer
+        position: absolute
+        display: flex
+
+        justify-content: center
+        align-items: center
+
+        height: 60px
+        width: 100%
+
+        bottom: 0
+
+        .logoutButton
+            position: absolute
+            display: flex
+
+            align-items: center
+            justify-content: center
+
+            background: transparent
+            border: none
+            border-radius: 100%
+
+            outline: none
+
+            height: 50px
+            width: 50px
+
+            left: 10px
+
+            transition: .2s
+
+            
+            padding: 0
+
+            &:hover
+                cursor: pointer
+                background: rgba($color: #fff, $alpha: .15)
+
+            &:active
+                background: rgba($color: #fff, $alpha: .5)
+
+            svg
+                fill: white !important
+                height: 65%
+                width: 65%
+
 
     &.open
         transform: translateX(0)

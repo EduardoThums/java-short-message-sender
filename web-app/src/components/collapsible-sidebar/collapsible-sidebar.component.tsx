@@ -3,9 +3,12 @@ import React, { useContext } from 'react'
 import { SidebarContext } from '../../context/contexts/sidebar.context';
 
 import styles from './collapsible-sidebar.module.sass'
-import { CloseIcon } from '../../resources';
+import { CloseIcon, LogoutIcon } from '../../resources';
 import { CloseSidebarAction } from '../../context/actions/sidebar.actions';
 import { SidebarLinkComponent } from './sidebar-link/sidebar-link.component';
+import { __RouterContext } from 'react-router';
+import { UserContext } from '../../context/contexts/user.context';
+import { LogoutUserAction } from '../../context/actions/user.actions';
 
 interface Props {
     links: { to: string, name: string }[]
@@ -14,7 +17,9 @@ interface Props {
 
 export function CollapsibleSidebar({ links, actualPage }: Props) {
 
+    const { history } = useContext(__RouterContext)
     const [sidebarStatus, sidebarDispatch] = useContext(SidebarContext)
+    const [, userDispatch] = useContext(UserContext)
 
     function renderLinks() {
         return links.map((l, key) => (
@@ -24,6 +29,14 @@ export function CollapsibleSidebar({ links, actualPage }: Props) {
 
     function closeSidebar() {
         sidebarDispatch(new CloseSidebarAction())
+    }
+
+    const logout = () => {
+        userDispatch(new LogoutUserAction())
+        sidebarDispatch(new CloseSidebarAction())
+        localStorage.clear()
+        sessionStorage.clear()
+        history.push('/')
     }
 
     return (
@@ -39,7 +52,9 @@ export function CollapsibleSidebar({ links, actualPage }: Props) {
             </section>
 
             <footer>
-
+                <button className={styles.logoutButton} onClick={logout}>
+                    <LogoutIcon />
+                </button>
             </footer>
         </div>
     )

@@ -10,5 +10,6 @@ export { ReactComponent as SearchUserIcon } from './icons/search_user.icon.svg'
 export { ReactComponent as SendIcon } from './icons/send.icon.svg'
 export { ReactComponent as ArrowRightIcon } from './icons/arrow_right.icon.svg'
 export { ReactComponent as ArrowLeftIcon } from './icons/arrow_left.icon.svg'
+export { ReactComponent as LogoutIcon } from './icons/logout.icon.svg'
 
 export { default as UserDefaultImage } from './images/user.image.png'

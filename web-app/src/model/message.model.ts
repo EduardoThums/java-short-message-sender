@@ -5,6 +5,10 @@ export interface MessageToSend {
     text: string
 }
 
-export interface MessageDTO {
-
+export interface MessageReceived {
+    id: number
+    text: string
+    isRead: boolean
+    createdDate: string
+    sender: UserWithID
 }

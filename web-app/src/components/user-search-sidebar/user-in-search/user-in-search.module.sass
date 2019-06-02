@@ -1,0 +1,40 @@
+@import "variables"
+
+.userInSearch
+    position: relative
+    display: flex
+
+    align-items: center
+
+    height: 60px
+    width: 100%
+
+    border: none
+
+    background: transparent
+
+    outline: none
+
+    transition: .1s
+    
+    span
+        margin: 0 20px
+        color: white
+        user-select: none
+        font-size: 14px
+
+    img
+        position: absolute
+        height: 40px
+        width: 40px    
+        user-select: none
+        border-radius: 100%
+        object-fit: cover
+        right: 20px
+    
+    &:hover
+        cursor: pointer
+        background: rgba($color: #fff, $alpha: .15)
+
+    &:active
+        background: rgba($color: #fff, $alpha: .5)

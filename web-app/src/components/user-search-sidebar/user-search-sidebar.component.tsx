@@ -6,6 +6,7 @@ import { getUsersByPage } from '../../services/user.service';
 import styles from './user-search-sidebar.module.sass'
 import { CloseIcon, ArrowLeftIcon, ArrowRightIcon } from '../../resources';
 import { SInput } from '../generics';
+import { UserInSearch } from './user-in-search/user-in-search.component';
 
 interface Props {
     open: boolean
@@ -54,15 +55,19 @@ export function UserSearchSidebar({ open, closeSidebar, selectUser }: Props) {
     }, [page])
 
     const renderUsers = () => pagedUsers.content.map(u => (
-        <span> {u.id} - {u.username} </span>
+        <UserInSearch user={u} onClick={() => { selectUser(u) }} />
     ))
 
     const goNextPage = () => {
-        setPage(p => p + 1)
+        if (!pagedUsers.last) {
+            setPage(p => p + 1)
+        }
     }
 
     const goPreviousPage = () => {
-        setPage(p => p - 1)
+        if (!pagedUsers.first) {
+            setPage(p => p - 1)
+        }
     }
 
     return (
@@ -81,7 +86,15 @@ export function UserSearchSidebar({ open, closeSidebar, selectUser }: Props) {
                     handleChange={({ value }) => { setSearch(value) }}
                     type='text'
                     placeholder="Procurar"
-                    className={styles.searchInput} />
+                    className={styles.searchInput}
+                    inputOptionalProps={{
+                        onBlur: () => {
+
+                        },
+                        onKeyPress: () => {
+
+                        }
+                    }} />
             </header>
 
             <section>

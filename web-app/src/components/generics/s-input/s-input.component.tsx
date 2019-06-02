@@ -9,6 +9,7 @@ interface Props {
     className?: string
     label?: string
     placeholder?: string
+    inputOptionalProps?: React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
 }
 
 export function SInput({ handleChange, id, value, className, label, type, placeholder }: Props) {

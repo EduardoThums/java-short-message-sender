@@ -1,22 +1,29 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 
 import ReactQuill from 'react-quill'
 
-import styles from './send-message.module.sass'
-import { UserWithID } from '../../../../model';
-import { SearchUserIcon, SendIcon } from '../../../../resources';
+import { UserWithID, AlertStatus } from '../../../../model';
+import { SearchUserIcon, SendIcon, UserDefaultImage } from '../../../../resources';
 import { UserSearchSidebar } from '../../../../components/user-search-sidebar/user-search-sidebar.component';
+import { AlertsContext } from '../../../../context/contexts/alerts.context';
+
+import { sendMessage as apiSendMessage } from '../../../../services'
+
+import styles from './send-message.module.sass'
+import { AddAlertAction } from '../../../../context/actions/alerts.actions';
 
 export function SendMessage() {
 
     let quillInstance: ReactQuill | null
 
-    const [user, setUser] = useState<UserWithID>({ id: 0, username: '', imageUrl: '' })
+    const [, alertsDispatch] = useContext(AlertsContext)
 
+    const [user, setUser] = useState<UserWithID>({ id: 0, username: '', imageUrl: '' })
     const [userSearch, setUserSearch] = useState(false)
 
-    const renderUser = () => user.id ? <div>
-        {user.username}  {user.imageUrl}
+    const renderUser = () => user.id ? <div className={styles.user}>
+        <img src={user.imageUrl || UserDefaultImage} alt="" />
+        <span>{user.username}</span>
     </div> : <span>
             Nenhum Usuario Selecionado
     </span>
@@ -29,18 +36,47 @@ export function SendMessage() {
         setUserSearch(false)
     }
 
-    const sendMessage = () => {
+    const sendMessage = async () => {
         if (quillInstance !== null) {
             const { getEditor } = quillInstance
             const editor = getEditor()
             const contents = editor.getContents()
+
+            if (!user.id) {
+                alertsDispatch(new AddAlertAction({
+                    text: 'Nenhum usuario foi selecionado',
+                    status: AlertStatus.DANGER
+                }))
+                return
+            }
+
+            try {
+                await apiSendMessage({
+                    text: JSON.stringify(contents),
+                    receiverId: user.id
+                })
+
+                alertsDispatch(new AddAlertAction({
+                    text: 'Mensagem enviada com sucesso',
+                    status: AlertStatus.SUCCESS
+                }))
+
+                editor.setText('')
+            } catch (error) {
+
+            }
         }
+    }
+
+    const selectUser = (user: UserWithID) => {
+        setUser(user)
+        setUserSearch(false)
     }
 
 
     return (
         <>
-            <UserSearchSidebar open={userSearch} closeSidebar={closeUserSearch} selectUser={() => { }} />
+            <UserSearchSidebar open={userSearch} closeSidebar={closeUserSearch} selectUser={selectUser} />
             <div className={styles.sendMessageCard}>
                 <header>
                     <span> MANDE SUA MENSAGEM </span>
@@ -66,7 +102,7 @@ export function SendMessage() {
                     theme='snow'
                     placeholder="Escreva sua mensagem"
                 />
-                <button className={styles.sendButton}>
+                <button className={styles.sendButton} onClick={sendMessage}>
                     <SendIcon />
                 </button>
             </div>

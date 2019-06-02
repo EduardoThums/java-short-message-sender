@@ -1,7 +1,7 @@
 import { UserWithID } from "./user.model";
 
 export interface MessageToSend {
-    receiver: UserWithID
+    receiverId: number
     text: string
 }
 

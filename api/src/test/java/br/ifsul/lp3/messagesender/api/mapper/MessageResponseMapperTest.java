@@ -47,7 +47,7 @@ public class MessageResponseMapperTest extends AbstractUnitTest {
         final MessageResponse response = responseList.get(0);
         Assert.assertEquals(messageEntity.getId(), response.getId());
         Assert.assertEquals(messageEntity.getCreatedDate(), response.getCreatedDate());
-        Assert.assertEquals(messageEntity.isRead(), response.getIsRead());
+        Assert.assertEquals(messageEntity.getIsRead(), response.getIsRead());
         Assert.assertEquals(messageEntity.getText(), response.getText());
 
         final MessageUserResponse userResponse = response.getSender();

@@ -6,6 +6,7 @@ import styles from './user-search-sidebar.module.sass'
 import { CloseIcon, ArrowLeftIcon, ArrowRightIcon } from '../../resources';
 import { SInput } from '../generics';
 import { UserInSearch } from './user-in-search/user-in-search.component';
+import { keyCodes } from '../../utils';
 
 interface Props {
     open: boolean
@@ -90,19 +91,10 @@ export function UserSearchSidebar({ open, closeSidebar, selectUser }: Props) {
                 <SInput
                     id="user-search"
                     value={search}
-                    handleChange={({ value }) => { setSearch(value) }}
+                    handleChange={({ value }) => { setSearch(value); searchUsersByUsername() }}
                     type='text'
                     placeholder="Procurar"
-                    className={styles.searchInput}
-                    inputOptionalProps={{
-                        // TODO - Implementar busca de user
-                        // onBlur: searchUsersByUsername,
-                        // onKeyPress: e => {
-                        //     if (e.keyCode == keyCodes.ENTER) {
-                        //         searchUsersByUsername()
-                        //     }
-                        // }
-                    }} />
+                    className={styles.searchInput} />
             </header>
 
             <section>

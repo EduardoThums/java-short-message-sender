@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/message_sender
+    url: jdbc:postgresql://localhost:5432/java_short_message_service
     username: postgres
     password: root
   jpa:
@@ -18,4 +18,4 @@ security:
     path: "/public/**"
 
 pagination:
-  default-size: 50
+  default-size: 5

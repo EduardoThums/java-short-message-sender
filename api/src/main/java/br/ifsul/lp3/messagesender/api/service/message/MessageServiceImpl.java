@@ -53,6 +53,7 @@ public class MessageServiceImpl implements MessageService {
         messageEntity.setText(request.getText());
         messageEntity.setReceiverId(request.getReceiverId());
         messageEntity.setSenderId(userId);
+        messageEntity.setIsRead(false);
 
         messageRepository.save(messageEntity);
     }
@@ -74,7 +75,7 @@ public class MessageServiceImpl implements MessageService {
     @Override
     public void maskAsRead(Long messageId) {
         final MessageEntity messageEntity = messageRepository.findById(messageId).orElseThrow(InvalidMessageException::new);
-        messageEntity.setRead(true);
+        messageEntity.setIsRead(true);
 
         messageRepository.save(messageEntity);
     }

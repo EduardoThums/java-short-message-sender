@@ -12,6 +12,6 @@ export async function getUsersByPage(page: number) {
 }
 
 export async function getPagedUsersByUsername({ page, username }: { page: number, username: string }) {
-    const response = await api.get<Paged<UserWithID>>(`/user/find-by-username/${username}?page=${page}`)
+    const response = await api.get<Paged<UserWithID>>(`/user/find-by-username/autocomplete/${username}?page=${page}`)
     return response.data
 }

@@ -26,5 +26,5 @@ public class MessageEntity {
 
     private Long receiverId;
 
-    private boolean isRead;
+    private Boolean isRead;
 }

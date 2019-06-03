@@ -76,7 +76,7 @@ public class MessageServiceTest extends AbstractUnitTest {
         Assert.assertEquals(request.getReceiverId(), savedMessage.getReceiverId());
         Assert.assertEquals(request.getText(), savedMessage.getText());
         Assert.assertEquals(mockedLoggedUser.getId(), savedMessage.getSenderId());
-        Assert.assertFalse(savedMessage.isRead());
+        Assert.assertFalse(savedMessage.getIsRead());
     }
 
     @Test(expected = InvalidUserException.class)
@@ -138,7 +138,7 @@ public class MessageServiceTest extends AbstractUnitTest {
 
         // Assert
         final MessageEntity savedMessage = messageEntityArgumentCaptor.getValue();
-        Assert.assertTrue(savedMessage.isRead());
+        Assert.assertTrue(savedMessage.getIsRead());
     }
 
     @Test(expected = InvalidMessageException.class)
@@ -162,7 +162,7 @@ public class MessageServiceTest extends AbstractUnitTest {
     }
 
     @Test
-    public void findById(){
+    public void findById() {
         // Arrange
         final Long messageId = 1L;
         final MessageEntity mockedMessage = DummyObjects.newInstance(MessageEntity.class);
@@ -183,7 +183,7 @@ public class MessageServiceTest extends AbstractUnitTest {
     }
 
     @Test(expected = InvalidMessageException.class)
-    public void findByIdThrowsInvalidMessageException(){
+    public void findByIdThrowsInvalidMessageException() {
         // Arrange
         final Long messageId = 1L;
 

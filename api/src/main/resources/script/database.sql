@@ -1,3 +1,5 @@
+create database java_short_message_service;
+
 create table "user" (
 	id int PRIMARY key,
 	username varchar (256) not null,
@@ -7,7 +9,7 @@ create table "user" (
 
 create table if not exists message (
 	id int PRIMARY key,
-	text varchar (1000) not null,
+	text varchar not null,
 	created_date timestamp default now(),
 	sender_id int not null,
 	receiver_id int not null,

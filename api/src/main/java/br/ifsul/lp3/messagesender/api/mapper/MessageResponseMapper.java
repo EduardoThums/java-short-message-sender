@@ -31,7 +31,7 @@ public class MessageResponseMapper {
                             .id(messageEntity.getId())
                             .text(messageEntity.getText())
                             .sender(senderResponse)
-                            .isRead(messageEntity.isRead())
+                            .isRead(messageEntity.getIsRead())
                             .createdDate(messageEntity.getCreatedDate())
                             .build();
                 })

@@ -14,12 +14,12 @@ export function ReceivedMessage({ onClick, receivedMessage }: Props) {
 
 
     return (
-        <button onClick={onClick} className={styles.message}>
+        <button onClick={onClick} className={`${styles.message} ${receivedMessage.isRead ? '' : styles.notRead}`}>
             <span>Mensagem de <b>{sender.username}</b></span>
             <img src={sender.imageUrl || UserDefaultImage} alt="" />
             <span> - {createdDate.slice(0, 10).replace(new RegExp('-', 'g'), '/')} </span>
             {receivedMessage.isRead ? null : (
-                <NotificationImportantIcon />
+                <NotificationImportantIcon className={styles.notificationIcon} />
             )}
         </button>
     )

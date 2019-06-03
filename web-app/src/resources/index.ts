@@ -12,5 +12,6 @@ export { ReactComponent as ArrowRightIcon } from './icons/arrow_right.icon.svg'
 export { ReactComponent as ArrowLeftIcon } from './icons/arrow_left.icon.svg'
 export { ReactComponent as LogoutIcon } from './icons/logout.icon.svg'
 export { ReactComponent as NotificationImportantIcon } from './icons/notification_important.icon.svg'
+export { ReactComponent as BackArrowIcon } from './icons/arrow_back.icon.svg'
 
 export { default as UserDefaultImage } from './images/user.image.png'

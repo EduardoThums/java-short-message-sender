@@ -1,7 +1,6 @@
 @import "variables"
 
-
-.inboxCard
+.messageCard 
     display: flex
     flex-direction: column
 
@@ -18,6 +17,7 @@
     background: white
 
     header
+        position: relative
         display: flex
         background: $primaryColor
         height: 60px
@@ -27,26 +27,8 @@
         align-items: center
         justify-content: center
 
-        span
-            color: white
-            font-size: 20px
-
-    section
-        height: calc(100% - 120px)
-        width: 100%
-
-    footer
-        height: 60px
-        min-height: 60px
-        width: 100%
-
-        justify-content: space-around
-        align-items: center
-
-        display: flex
-        background: $primaryColor
-
         button
+            position: absolute
             display: flex
 
             align-items: center
@@ -58,12 +40,13 @@
 
             outline: none
 
-            height: 40px
-            width: 40px
+            height: 50px
+            width: 50px
+
+            left: 10px
 
             transition: .2s
 
-            
             padding: 0
 
             &:hover
@@ -73,10 +56,16 @@
             &:active
                 background: rgba($color: #fff, $alpha: .5)
 
-            &:disabled
-                opacity: 0
-
             svg
                 fill: white
                 height: 65%
                 width: 65%
+
+        span
+            color: white
+            font-size: 20px
+
+    section
+        height: calc(100% - 60px)
+        width: 100%
+        overflow-y: auto

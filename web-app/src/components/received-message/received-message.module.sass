@@ -18,6 +18,8 @@
 
     outline: none
 
+    border-right: 5px solid $commonColor
+
     *
         user-select: none
 
@@ -30,6 +32,18 @@
         border-radius: 100%
         object-fit: cover
         right: 20px
+
+    .notificationIcon
+        position: absolute
+        right: 20px
+
+        fill: $warningColor
+
+        @media only screen and (max-width: 650px) 
+            display: none
+
+    &.notRead
+        border-right-color: $warningColor
 
     &:hover
         filter: brightness(.95)

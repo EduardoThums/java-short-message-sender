@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 
 import styles from './inbox.module.sass'
 import { findReceivedMessages } from '../../../../services';
@@ -6,8 +6,11 @@ import { MessageReceived } from '../../../../model/message.model';
 import { Paged } from '../../../../model';
 import { ArrowLeftIcon, ArrowRightIcon } from '../../../../resources';
 import { ReceivedMessage } from '../../../../components/received-message/received-message.component';
+import { __RouterContext } from 'react-router';
 
 export function Inbox() {
+
+    const { history } = useContext(__RouterContext)
 
     const [page, setPage] = useState(0)
     const [receivedMessages, setReceivedMessages] = useState<Paged<MessageReceived>>({
@@ -47,8 +50,12 @@ export function Inbox() {
     }, [page])
 
     const renderMessages = () => receivedMessages.content.map((m) => (
-        <ReceivedMessage receivedMessage={m} onClick={() => { }} />
+        <ReceivedMessage receivedMessage={m} onClick={() => { goToMessage(m.id) }} />
     ))
+
+    const goToMessage = (id: number) => {
+        history.push(`/home/message/${id}`)
+    }
 
     return (
         <div className={styles.inboxCard}>

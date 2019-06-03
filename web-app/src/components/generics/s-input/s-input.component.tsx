@@ -12,7 +12,7 @@ interface Props {
     inputOptionalProps?: React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
 }
 
-export function SInput({ handleChange, id, value, className, label, type, placeholder }: Props) {
+export function SInput({ handleChange, id, value, className, label, type, placeholder, inputOptionalProps }: Props) {
 
     function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
         const target = e.target
@@ -33,7 +33,7 @@ export function SInput({ handleChange, id, value, className, label, type, placeh
 
     return (
         <div className={`${styles.sInput} ${className || ''}`}>
-            <input placeholder={placeholder} type={type} onChange={handleInputChange} id={id} value={value} />
+            <input placeholder={placeholder} type={type} onChange={handleInputChange} id={id} value={value} {...inputOptionalProps} />
             {renderLabel()}
         </div>
     )

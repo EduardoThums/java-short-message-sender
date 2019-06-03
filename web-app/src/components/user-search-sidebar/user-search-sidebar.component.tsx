@@ -1,12 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { UserWithID, Paged } from '../../model';
 import { UserContext } from '../../context/contexts/user.context';
-import { getUsersByPage } from '../../services/user.service';
+import { getUsersByPage, getPagedUsersByUsername } from '../../services/user.service';
 
 import styles from './user-search-sidebar.module.sass'
 import { CloseIcon, ArrowLeftIcon, ArrowRightIcon } from '../../resources';
 import { SInput } from '../generics';
 import { UserInSearch } from './user-in-search/user-in-search.component';
+import { keyCodes } from '../../utils';
 
 interface Props {
     open: boolean
@@ -49,7 +50,9 @@ export function UserSearchSidebar({ open, closeSidebar, selectUser }: Props) {
     const [search, setSearch] = useState('')
 
     useEffect(() => {
-        getUsersByPage(page).then((pagedUsers) => {
+        search ? getPagedUsersByUsername({ page: page, username: search }).then((pagedUsers) => {
+            setPagedUsers(pagedUsers)
+        }) : getUsersByPage(page).then((pagedUsers) => {
             setPagedUsers(pagedUsers)
         })
     }, [page])
@@ -70,6 +73,12 @@ export function UserSearchSidebar({ open, closeSidebar, selectUser }: Props) {
         }
     }
 
+    const searchUsersByUsername = async () => {
+        setPage(0)
+        const pagedUsers = await getPagedUsersByUsername({ page: page, username: search })
+        setPagedUsers(pagedUsers)
+    }
+
     return (
         <div className={`${styles.sidebar} ${open ? styles.open : styles.closed}`}>
 
@@ -88,12 +97,13 @@ export function UserSearchSidebar({ open, closeSidebar, selectUser }: Props) {
                     placeholder="Procurar"
                     className={styles.searchInput}
                     inputOptionalProps={{
-                        onBlur: () => {
-
-                        },
-                        onKeyPress: () => {
-
-                        }
+                        // TODO - Implementar busca de user
+                        // onBlur: searchUsersByUsername,
+                        // onKeyPress: e => {
+                        //     if (e.keyCode == keyCodes.ENTER) {
+                        //         searchUsersByUsername()
+                        //     }
+                        // }
                     }} />
             </header>
 

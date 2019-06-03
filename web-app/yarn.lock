@@ -3330,6 +3330,11 @@ delegates@^1.0.0:
   resolved "https://registry.yarnpkg.com/delegates/-/delegates-1.0.0.tgz#84c6e159b81904fdca59a0ef44cd870d31250f9a"
   integrity sha1-hMbhWbgZBP3KWaDvRM2HDTElD5o=
 
+delta@^3.0.5:
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/delta/-/delta-3.0.5.tgz#87f231304290c6a27729ef912bafec189e91f277"
+  integrity sha512-mQsNj3oBJ/4W0RCfppOMNEh/WFup4aVAFAtDWWjjgbDDJXdizG6rLnsmA6YTtvIqHQN1c478fQBGbkaWiQQKQw==
+
 depd@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/depd/-/depd-1.1.2.tgz#9bcd52e14c097763e749b274c4346ed2e560b5a9"
@@ -8243,7 +8248,7 @@ quill-delta@^3.6.2:
     extend "^3.0.2"
     fast-diff "1.1.2"
 
-quill-delta@^4.0.1:
+quill-delta@^4.0.1, quill-delta@^4.2.1:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/quill-delta/-/quill-delta-4.2.1.tgz#ad4f191cdf3be5079c5dc3991b9603a5cc0db69a"
   integrity sha512-Y2nksOj6Q+4hizre8n0dml76vLNGK4/y86EoI1d7rv6EL1bx7DPDYRmqQMPu1UqFQO/uQuVHQ3fOmm4ZSzWrfA==

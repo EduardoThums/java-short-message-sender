@@ -29,10 +29,7 @@ export function MessageRoute({ match }: RouteComponentProps<{ id: string }>) {
         findMessageById(+id).then((receivedMessage) => {
             setMessage(receivedMessage)
 
-            markMessageAsRead(+id).catch((err) => {
-                console.log(err);
-
-            })
+            markMessageAsRead(+id)
         })
     }, [])
 
@@ -47,7 +44,7 @@ export function MessageRoute({ match }: RouteComponentProps<{ id: string }>) {
                     <BackArrowIcon />
                 </button>
                 <span>
-                    <b> {message.sender.username} </b> - <b>{message.createdDate.slice(0, 10).replace(new RegExp('-', 'g'), '/')}</b>
+                    <b> {message.sender.username} </b>
                 </span>
             </header>
 
@@ -56,8 +53,14 @@ export function MessageRoute({ match }: RouteComponentProps<{ id: string }>) {
                     readOnly={true}
                     value={JSON.parse(message.text)}
                     theme="bubble"
+                    className={styles.quill}
                 />
             </section>
+            <footer>
+                <span>
+                    {message.createdDate.slice(0, 10).replace(new RegExp('-', 'g'), '/')}
+                </span>
+            </footer>
         </div>
     )
 }

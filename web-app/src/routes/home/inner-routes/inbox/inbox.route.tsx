@@ -45,16 +45,27 @@ export function Inbox() {
     useEffect(() => {
         findReceivedMessages(page).then((received) => {
             setReceivedMessages(received)
-            console.log(received)
         })
     }, [page])
 
-    const renderMessages = () => receivedMessages.content.map((m) => (
-        <ReceivedMessage receivedMessage={m} onClick={() => { goToMessage(m.id) }} />
+    const renderMessages = () => receivedMessages.content.map((m, key) => (
+        <ReceivedMessage receivedMessage={m} onClick={() => { goToMessage(m.id) }} key={key} />
     ))
 
     const goToMessage = (id: number) => {
         history.push(`/home/message/${id}`)
+    }
+
+    const goNextPage = () => {
+        if (!receivedMessages.last) {
+            setPage(p => p + 1)
+        }
+    }
+
+    const goPreviousPage = () => {
+        if (!receivedMessages.first) {
+            setPage(p => p - 1)
+        }
     }
 
     return (
@@ -68,10 +79,16 @@ export function Inbox() {
             </section>
 
             <footer>
-                <button>
+                <button
+                    disabled={receivedMessages.first}
+                    onClick={goPreviousPage}
+                >
                     <ArrowLeftIcon />
                 </button>
-                <button>
+                <button
+                    disabled={receivedMessages.last}
+                    onClick={goNextPage}
+                >
                     <ArrowRightIcon />
                 </button>
             </footer>

@@ -11,6 +11,7 @@ import { sendMessage as apiSendMessage } from '../../../../services'
 
 import styles from './send-message.module.sass'
 import { AddAlertAction } from '../../../../context/actions/alerts.actions';
+import { SInput } from '../../../../components/generics';
 
 export function SendMessage() {
 
@@ -20,6 +21,7 @@ export function SendMessage() {
 
     const [user, setUser] = useState<UserWithID>({ id: 0, username: '', imageUrl: '' })
     const [userSearch, setUserSearch] = useState(false)
+    const [subject, setSubject] = useState('')
 
     const renderUser = () => user.id ? <div className={styles.user}>
         <img src={user.imageUrl || UserDefaultImage} alt="" />
@@ -53,7 +55,8 @@ export function SendMessage() {
             try {
                 await apiSendMessage({
                     text: JSON.stringify(contents),
-                    receiverId: user.id
+                    receiverId: user.id,
+                    subject: ''
                 })
 
                 alertsDispatch(new AddAlertAction({
@@ -88,6 +91,8 @@ export function SendMessage() {
                         <SearchUserIcon />
                     </button>
                 </div>
+
+                <SInput type="text" value={subject} handleChange={({value}) => { setSubject(value) }} id="subject" label="Assunto" placeholder="Escreva o assunto" />
                 <ReactQuill className={styles.editor} modules={{
                     toolbar: [
                         [{ 'size': ['small', false, 'large', 'huge'] }],

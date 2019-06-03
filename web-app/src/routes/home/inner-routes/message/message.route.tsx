@@ -21,6 +21,7 @@ export function MessageRoute({ match }: RouteComponentProps<{ id: string }>) {
             imageUrl: ''
         },
         text: '{}',
+        subject: '',
         createdDate: '',
         isRead: false
     })

@@ -13,5 +13,7 @@ public class SendMessageRequest {
 
     private String text;
 
+    private String subject;
+
     private Long receiverId;
 }

@@ -15,5 +15,5 @@ public class MessageJdbcCriteria {
 
     private String senderUsername;
 
-    private String text;
+    private String subject;
 }

@@ -18,6 +18,8 @@ public class MessageEntity {
 
     private String text;
 
+    private String subject;
+
     @CreatedDate
     @Column(updatable = false)
     private Instant createdDate = Instant.now();

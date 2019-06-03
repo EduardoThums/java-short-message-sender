@@ -10,6 +10,7 @@ create table "user" (
 create table if not exists message (
 	id int PRIMARY key,
 	text varchar not null,
+	subject varchar not null,
 	created_date timestamp default now(),
 	sender_id int not null,
 	receiver_id int not null,

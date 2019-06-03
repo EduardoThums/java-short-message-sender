@@ -99,7 +99,7 @@ public class MessageServiceTest extends AbstractUnitTest {
         final MessageEntity mockedMessage = DummyObjects.newInstance(MessageEntity.class);
         final MessageJdbcCriteria messageJdbcCriteria = MessageJdbcCriteria.builder()
                 .loggedUserId(mockedLoggedUser.getId())
-                .text(request.getText())
+                .subject(request.getSubject())
                 .senderUsername(request.getUsername())
                 .build();
         final MessageResponse mockedResponse = DummyObjects.newInstance(MessageResponse.class);

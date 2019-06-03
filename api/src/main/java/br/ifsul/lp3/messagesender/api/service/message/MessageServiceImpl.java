@@ -51,6 +51,7 @@ public class MessageServiceImpl implements MessageService {
 
         final MessageEntity messageEntity = new MessageEntity();
         messageEntity.setText(request.getText());
+        messageEntity.setSubject(request.getSubject());
         messageEntity.setReceiverId(request.getReceiverId());
         messageEntity.setSenderId(userId);
         messageEntity.setIsRead(false);
@@ -64,7 +65,7 @@ public class MessageServiceImpl implements MessageService {
         final MessageJdbcCriteria messageJdbcCriteria = MessageJdbcCriteria.builder()
                 .loggedUserId(loggedUserId)
                 .senderUsername(request.getUsername())
-                .text(request.getText())
+                .subject(request.getSubject())
                 .build();
         final List<MessageEntity> messageEntities = messageJdbcRepository.findAllByCriteria(messageJdbcCriteria);
         final List<MessageResponse> messageResponses = messageResponseMapper.mapMessageEntityToMessageResponse(messageEntities);

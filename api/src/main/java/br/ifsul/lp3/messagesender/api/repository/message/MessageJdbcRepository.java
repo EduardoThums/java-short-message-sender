@@ -37,8 +37,8 @@ public class MessageJdbcRepository {
             where += "AND u.username ILIKE concat(:username, '%') ";
         }
 
-        if (messageJdbcCriteria.getText() != null) {
-            where += "AND m.text ILIKE concat('%', :text, '%') ";
+        if (messageJdbcCriteria.getSubject() != null) {
+            where += "AND m.subject ILIKE concat('%', :subject, '%') ";
         }
 
         return Criteria.builder()
@@ -50,7 +50,7 @@ public class MessageJdbcRepository {
         final Map<String, Object> params = new HashMap<>();
         params.put("loggedUserId", messageJdbcCriteria.getLoggedUserId());
         params.put("username", messageJdbcCriteria.getSenderUsername());
-        params.put("text", messageJdbcCriteria.getText());
+        params.put("subject", messageJdbcCriteria.getSubject());
 
         return params;
     }

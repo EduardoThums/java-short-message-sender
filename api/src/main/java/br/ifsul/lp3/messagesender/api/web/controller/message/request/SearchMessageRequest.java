@@ -11,5 +11,5 @@ public class SearchMessageRequest {
 
     private String username;
 
-    private String text;
+    private String subject;
 }

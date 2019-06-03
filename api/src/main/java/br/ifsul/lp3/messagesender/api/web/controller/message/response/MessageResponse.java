@@ -15,6 +15,8 @@ public class MessageResponse {
 
     private String text;
 
+    private String subject;
+
     private Boolean isRead;
 
     private Instant createdDate;

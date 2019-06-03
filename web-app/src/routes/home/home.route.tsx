@@ -7,7 +7,7 @@ import { CollapsibleSidebar } from '../../components/collapsible-sidebar/collaps
 import { SendMessage } from './inner-routes/send-message/send-message.route';
 import { UserContext } from '../../context/contexts/user.context';
 import { AuthUserAction } from '../../context/actions/user.actions';
-import { getAuthUser, getUsersByPage } from '../../services/user.service';
+import { getAuthUser } from '../../services/user.service';
 import { Inbox } from './inner-routes/inbox/inbox.route';
 import { MessageRoute } from './inner-routes/message/message.route';
 

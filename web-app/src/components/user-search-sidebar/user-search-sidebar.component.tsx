@@ -1,13 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { UserWithID, Paged } from '../../model';
-import { UserContext } from '../../context/contexts/user.context';
 import { getUsersByPage, getPagedUsersByUsername } from '../../services/user.service';
 
 import styles from './user-search-sidebar.module.sass'
 import { CloseIcon, ArrowLeftIcon, ArrowRightIcon } from '../../resources';
 import { SInput } from '../generics';
 import { UserInSearch } from './user-in-search/user-in-search.component';
-import { keyCodes } from '../../utils';
 
 interface Props {
     open: boolean
@@ -57,8 +55,8 @@ export function UserSearchSidebar({ open, closeSidebar, selectUser }: Props) {
         })
     }, [page])
 
-    const renderUsers = () => pagedUsers.content.map(u => (
-        <UserInSearch user={u} onClick={() => { selectUser(u) }} />
+    const renderUsers = () => pagedUsers.content.map((u, key) => (
+        <UserInSearch user={u} onClick={() => { selectUser(u) }} key={key} />
     ))
 
     const goNextPage = () => {

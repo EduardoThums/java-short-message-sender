@@ -56,7 +56,7 @@ export function SendMessage() {
                 await apiSendMessage({
                     text: JSON.stringify(contents),
                     receiverId: user.id,
-                    subject: ''
+                    subject
                 })
 
                 alertsDispatch(new AddAlertAction({
@@ -65,6 +65,7 @@ export function SendMessage() {
                 }))
 
                 editor.setText('')
+                setSubject('')
             } catch (error) {
 
             }

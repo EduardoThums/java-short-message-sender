@@ -49,12 +49,17 @@ export function UserSearchSidebar({ open, closeSidebar, selectUser }: Props) {
     const [search, setSearch] = useState('')
 
     useEffect(() => {
-        search ? getPagedUsersByUsername({ page: page, username: search }).then((pagedUsers) => {
-            setPagedUsers(pagedUsers)
-        }) : getUsersByPage(page).then((pagedUsers) => {
+        getPagedUsers().then(pagedUsers => {
             setPagedUsers(pagedUsers)
         })
     }, [page])
+
+    useEffect(() => {
+        getPagedUsers().then(pagedUsers => {
+            setPagedUsers(pagedUsers)
+            setPage(0)
+        })
+    }, [search])
 
     const renderUsers = () => pagedUsers.content.map((u, key) => (
         <UserInSearch user={u} onClick={() => { selectUser(u) }} key={key} />
@@ -72,11 +77,7 @@ export function UserSearchSidebar({ open, closeSidebar, selectUser }: Props) {
         }
     }
 
-    const searchUsersByUsername = async () => {
-        setPage(0)
-        const pagedUsers = await getPagedUsersByUsername({ page: page, username: search })
-        setPagedUsers(pagedUsers)
-    }
+    const getPagedUsers = async () => search ? await getPagedUsersByUsername({ page: page, username: search }) : await getUsersByPage(page)
 
     return (
         <div className={`${styles.sidebar} ${open ? styles.open : styles.closed}`}>
@@ -91,7 +92,7 @@ export function UserSearchSidebar({ open, closeSidebar, selectUser }: Props) {
                 <SInput
                     id="user-search"
                     value={search}
-                    handleChange={({ value }) => { setSearch(value); searchUsersByUsername() }}
+                    handleChange={({ value }) => { setSearch(value) }}
                     type='text'
                     placeholder="Procurar"
                     className={styles.searchInput} />

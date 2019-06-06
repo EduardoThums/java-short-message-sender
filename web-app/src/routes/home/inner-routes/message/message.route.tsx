@@ -4,7 +4,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import styles from './message.module.sass'
 import { BackArrowIcon } from '../../../../resources';
 import { __RouterContext } from 'react-router';
-import { findMessageById, markMessageAsRead } from '../../../../services';
+import { messageService } from '../../../../services';
 import { MessageReceived } from '../../../../model/message.model';
 import ReactQuill from 'react-quill';
 
@@ -27,10 +27,10 @@ export function MessageRoute({ match }: RouteComponentProps<{ id: string }>) {
     })
 
     useEffect(() => {
-        findMessageById(+id).then((receivedMessage) => {
+        messageService.findMessageById(+id).then((receivedMessage) => {
             setMessage(receivedMessage)
 
-            markMessageAsRead(+id)
+            messageService.markMessageAsRead(+id)
         })
     }, [])
 

@@ -7,7 +7,7 @@ import { SearchUserIcon, SendIcon, UserDefaultImage } from '../../../../resource
 import { UserSearchSidebar } from '../../../../components/user-search-sidebar/user-search-sidebar.component';
 import { AlertsContext } from '../../../../context/contexts/alerts.context';
 
-import { sendMessage as apiSendMessage } from '../../../../services'
+import { messageService } from '../../../../services'
 
 import styles from './send-message.module.sass'
 import { AddAlertAction } from '../../../../context/actions/alerts.actions';
@@ -53,7 +53,7 @@ export function SendMessage() {
             }
 
             try {
-                await apiSendMessage({
+                await messageService.sendMessage({
                     text: JSON.stringify(contents),
                     receiverId: user.id,
                     subject

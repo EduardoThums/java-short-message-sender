@@ -5,13 +5,13 @@ import { SignUpCard } from '../../components';
 import { SignUpForm, AlertStatus } from '../../model';
 import { AlertsContext } from '../../context/contexts/alerts.context';
 import { AddAlertAction } from '../../context/actions/alerts.actions';
-import { signUp } from '../../services';
+import { signUpService } from '../../services';
 
 export function SignUpPage() {
 
     const [, alertDispatch] = useContext(AlertsContext)
 
-    async function doSignUp({ username, password, repeatPassword, imageUrl }: SignUpForm) {
+    async function signUp({ username, password, repeatPassword, imageUrl }: SignUpForm) {
 
         if (!username || !password) {
             alertDispatch(new AddAlertAction({
@@ -30,7 +30,7 @@ export function SignUpPage() {
         }
 
         try {
-            await signUp({
+            await signUpService.signUp({
                 username,
                 password,
                 imageUrl
@@ -52,7 +52,7 @@ export function SignUpPage() {
 
     return (
         <div className={styles.signUpPage}>
-            <SignUpCard signUp={doSignUp}/>
+            <SignUpCard signUp={signUp}/>
         </div>
     )
 }

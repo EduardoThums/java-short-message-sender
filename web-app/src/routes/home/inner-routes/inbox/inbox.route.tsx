@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 
 import styles from './inbox.module.sass'
-import { findReceivedMessages } from '../../../../services';
+import { messageService } from '../../../../services';
 import { MessageReceived } from '../../../../model/message.model';
 import { Paged } from '../../../../model';
 import { ArrowLeftIcon, ArrowRightIcon } from '../../../../resources';
@@ -43,7 +43,7 @@ export function Inbox() {
     })
 
     useEffect(() => {
-        findReceivedMessages(page).then((received) => {
+        messageService.findReceivedMessages(page).then((received) => {
             setReceivedMessages(received)
         })
     }, [page])

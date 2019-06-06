@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { UserWithID, Paged } from '../../model';
-import { getUsersByPage, getPagedUsersByUsername } from '../../services/user.service';
+import { userService } from '../../services/user.service';
 
 import styles from './user-search-sidebar.module.sass'
 import { CloseIcon, ArrowLeftIcon, ArrowRightIcon } from '../../resources';
@@ -77,7 +77,9 @@ export function UserSearchSidebar({ open, closeSidebar, selectUser }: Props) {
         }
     }
 
-    const getPagedUsers = async () => search ? await getPagedUsersByUsername({ page: page, username: search }) : await getUsersByPage(page)
+    const getPagedUsers = async () => search ? 
+        await userService.getPagedUsersByUsername({ page: page, username: search }) : 
+        await userService.getUsersByPage(page)
 
     return (
         <div className={`${styles.sidebar} ${open ? styles.open : styles.closed}`}>

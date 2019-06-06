@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import styles from './login.module.sass'
 
 import { LoginCard } from '../../components'
-import { authenticate } from '../../services/auth.service'
+import { authService } from '../../services/auth.service'
 import { Login, AlertStatus } from '../../model'
 import { AlertsContext } from '../../context/contexts/alerts.context';
 import { AddAlertAction } from '../../context/actions/alerts.actions';
@@ -26,7 +26,7 @@ export function LoginPage() {
         }
 
         try {
-            const { token } = await authenticate({
+            const { token } = await authService.authenticate({
                 username,
                 password
             })

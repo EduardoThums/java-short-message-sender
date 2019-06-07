@@ -23,7 +23,7 @@ public class MessageJdbcRepository {
         final Map<String, Object> params = getDefaultParams(messageJdbcCriteria);
         final Criteria criteria = mapCriteria(messageJdbcCriteria);
         final String sql = "SELECT m.* FROM message m " +
-                "INNER JOIN \"user\" u ON m.sender_id = u.id AND u.id != :loggedUserId "
+                "INNER JOIN \"user\" u ON m.receiver_id = u.id "
                 + criteria.getWhere()
                 + "ORDER BY m.created_date DESC";
 
@@ -31,7 +31,7 @@ public class MessageJdbcRepository {
     }
 
     private Criteria mapCriteria(MessageJdbcCriteria messageJdbcCriteria) {
-        String where = "WHERE 1=1 ";
+        String where = "WHERE u.id = :loggedUserId ";
 
         if (messageJdbcCriteria.getSenderUsername() != null) {
             where += "AND u.username ILIKE concat(:username, '%') ";

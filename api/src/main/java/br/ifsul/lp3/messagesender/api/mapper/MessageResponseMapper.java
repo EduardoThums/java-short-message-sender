@@ -33,6 +33,7 @@ public class MessageResponseMapper {
                             .sender(senderResponse)
                             .isRead(messageEntity.getIsRead())
                             .createdDate(messageEntity.getCreatedDate())
+                            .subject(messageEntity.getSubject())
                             .build();
                 })
                 .collect(Collectors.toList());

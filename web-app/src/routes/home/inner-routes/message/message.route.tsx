@@ -45,7 +45,7 @@ export function MessageRoute({ match }: RouteComponentProps<{ id: string }>) {
                     <BackArrowIcon />
                 </button>
                 <span>
-                    <b> {message.sender.username} </b>
+                    <b> {message.subject} </b>
                 </span>
             </header>
 
@@ -59,7 +59,7 @@ export function MessageRoute({ match }: RouteComponentProps<{ id: string }>) {
             </section>
             <footer>
                 <span>
-                    {message.createdDate.slice(0, 10).replace(new RegExp('-', 'g'), '/')}
+                    {message.sender.username} - {message.createdDate.slice(0, 10).replace(new RegExp('-', 'g'), '/')}
                 </span>
             </footer>
         </div>

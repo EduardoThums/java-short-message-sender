@@ -7,6 +7,7 @@ import { Paged } from '../../../../model';
 import { ArrowLeftIcon, ArrowRightIcon } from '../../../../resources';
 import { ReceivedMessage } from '../../../../components/received-message/received-message.component';
 import { __RouterContext } from 'react-router';
+import { SInput } from '../../../../components/generics';
 
 export function Inbox() {
 
@@ -85,6 +86,7 @@ export function Inbox() {
                 >
                     <ArrowLeftIcon />
                 </button>
+                <SInput type='text' value="" id="search" placeholder="Procure por assunto ou nome" handleChange={() => {}}/>
                 <button
                     disabled={receivedMessages.last}
                     onClick={goNextPage}

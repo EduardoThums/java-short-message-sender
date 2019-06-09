@@ -12,7 +12,7 @@ Projeto realizado para a disciplina de Linguagem de Programação III, visando c
 ## Tecnologias usadas
 A aplicação conta com uma API construída em Java usando Spring Boot e JPA, com integração do Postgresql como banco de dados.
 
---Escrever aqui as tecnologias usadas no front-end.
+A aplicação tambem possui uma interface web usando React, Typescript e SASS que podem ser compiladas para HTML, CSS e JS.
 
 ## Funcionalidades
    * **Realizar cadastro:** é possível cadastrar-se no na plataforma informando um nome de usuário e uma senha.
@@ -28,14 +28,15 @@ A aplicação conta com uma API construída em Java usando Spring Boot e JPA, co
      * Java 8 instalado no computador
      * IDE capaz de compilar em Java
      * Postgresql instalado no computador
-     * --Aqui vai os requisitos do front-end
+     * Node instalado no computador
    * **Back-end**
      * Importe o projeto para IDE de sua escolha.
      * Vá até a pasta scripts dentro do projeto e execute o arquivo chamado database.sql dentro do Workbench de sua escolha.
      * Rode a aplicação.
    * **Front-end**
-     * --Aqui o passo-a-passo para a instalação do front-end.
-
+     * Siga com o terminal até a pasta do projeto
+     * Instale as dependencias com o comando `npm i` ou `yarn`
+     * Então a aplicação pode ser rodada em local com o comando `npm start` ou `yarn start` ou compilada com o comando `npm run build` ou `yarn build`
 
 ## Contribuidores
 Eduardo Cristiano Thums\

@@ -20,9 +20,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(
-        securedEnabled = true,
-        jsr250Enabled = true,
-        prePostEnabled = true
+        jsr250Enabled = true
 )
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -70,11 +68,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(publicPath)
                 .permitAll()
 
-                .anyRequest()
-                .authenticated()
+                .antMatchers("/swagger-ui.html")
+                .permitAll()
 
-                .antMatchers("/webjars/springfox-swagger-ui/**", "/swagger-ui.html", "/swagger-resources/**", "/v2/api-docs/**")
-                .permitAll();
+                .antMatchers("/webjars/springfox-swagger-ui/**")
+                .permitAll()
+
+                .antMatchers("/swagger-resources/**")
+                .permitAll()
+
+                .antMatchers("/v2/api-docs/**")
+                .permitAll()
+
+                .anyRequest()
+                .authenticated();
 
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 

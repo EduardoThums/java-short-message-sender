@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useRef } from 'react'
 import { UserWithID } from '../../../model';
 
 import styles from './user-in-search.module.sass'
@@ -10,10 +10,16 @@ interface Props {
 }
 
 export function UserInSearch({ user, onClick }: Props) {
+
+    const userImage = useRef<HTMLImageElement>(null)
+
     return (
         <button className={styles.userInSearch} onClick={onClick}>
             <span>{user.username}</span>
-            <img src={user.imageUrl || UserDefaultImage} alt={user.username} />
+            <img ref={userImage} src={user.imageUrl || UserDefaultImage} alt="" onError={() => {
+                    if(userImage.current)
+                        userImage.current.src = UserDefaultImage
+                }} />
         </button>
-    )
+    ) 
 }

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useRef } from 'react'
 
 import styles from './home-nav.module.sass'
 import { User } from '../../model';
@@ -14,6 +14,9 @@ export function HomeNavbar({ user }: Props) {
 
     const [, sidebarDispatch] = useContext(SidebarContext)
 
+    const userImage = useRef<HTMLImageElement>(null)
+
+
     function openSidebar() {
         sidebarDispatch(new OpenSidebarAction())
     }
@@ -28,7 +31,10 @@ export function HomeNavbar({ user }: Props) {
 
             <div className={styles.user}>
                 <span> {user.username} </span>
-                <img src={user.imageUrl || UserDefaultImage} alt="" />
+                <img ref={userImage} src={user.imageUrl || UserDefaultImage} alt="" onError={() => {
+                    if(userImage.current)
+                        userImage.current.src = UserDefaultImage
+                }}/>
             </div>
         </nav>
     )

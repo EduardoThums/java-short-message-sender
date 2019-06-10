@@ -4,10 +4,9 @@ import styles from './inbox.module.sass'
 import { messageService } from '../../../../services';
 import { MessageReceived } from '../../../../model/message.model';
 import { Paged } from '../../../../model';
-import { ArrowLeftIcon, ArrowRightIcon } from '../../../../resources';
+import { ArrowLeftIcon, ArrowRightIcon, RefreshIcon, FilterIcon } from '../../../../resources';
 import { ReceivedMessage } from '../../../../components/received-message/received-message.component';
 import { __RouterContext } from 'react-router';
-import { SInput } from '../../../../components/generics';
 
 export function Inbox() {
 
@@ -63,16 +62,33 @@ export function Inbox() {
         }
     }
 
+    const refreshReceivedMessages = () => {
+        messageService.findReceivedMessages(page).then((received) => {
+            setReceivedMessages(received)
+        })
+    }
+
     const goPreviousPage = () => {
         if (!receivedMessages.first) {
             setPage(p => p - 1)
         }
     }
+    
 
     return (
         <div className={styles.inboxCard}>
             <header>
                 <span> CAIXA DE ENTRADA </span>
+                <div className={styles.buttons}>
+                    <button>
+                        <FilterIcon />  
+                    </button>
+                    <button
+                        onClick={refreshReceivedMessages}
+                    >
+                        <RefreshIcon />
+                    </button>
+                </div>
             </header>
 
             <section>
@@ -86,7 +102,6 @@ export function Inbox() {
                 >
                     <ArrowLeftIcon />
                 </button>
-                <SInput type='text' value="" id="search" placeholder="Procure por assunto ou nome" handleChange={() => {}}/>
                 <button
                     disabled={receivedMessages.last}
                     onClick={goNextPage}

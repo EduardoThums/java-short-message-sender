@@ -14,5 +14,6 @@ export { ReactComponent as LogoutIcon } from './icons/logout.icon.svg'
 export { ReactComponent as NotificationImportantIcon } from './icons/notification_important.icon.svg'
 export { ReactComponent as BackArrowIcon } from './icons/arrow_back.icon.svg'
 export { ReactComponent as RefreshIcon } from './icons/refresh.icon.svg'
+export { ReactComponent as FilterIcon } from './icons/filter.icon.svg'
 
 export { default as UserDefaultImage } from './images/user.image.png'

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useRef } from 'react'
 
 import ReactQuill from 'react-quill'
 
@@ -15,7 +15,8 @@ import { SInput } from '../../../../components/generics';
 
 export function SendMessage() {
 
-    let quillInstance: ReactQuill | null
+    const quillInstance = useRef<ReactQuill>(null)
+    const userImage = useRef<HTMLImageElement>(null)
 
     const [, alertsDispatch] = useContext(AlertsContext)
 
@@ -24,7 +25,10 @@ export function SendMessage() {
     const [subject, setSubject] = useState('')
 
     const renderUser = () => user.id ? <div className={styles.user}>
-        <img src={user.imageUrl || UserDefaultImage} alt="" />
+        <img ref={userImage} src={user.imageUrl || UserDefaultImage} alt="" onError={() => {
+                    if(userImage.current)
+                        userImage.current.src = UserDefaultImage
+                }} />
         <span>{user.username}</span>
     </div> : <span>
             Nenhum Usuario Selecionado
@@ -39,8 +43,8 @@ export function SendMessage() {
     }
 
     const sendMessage = async () => {
-        if (quillInstance !== null) {
-            const { getEditor } = quillInstance
+        if (quillInstance.current) {
+            const { getEditor } = quillInstance.current
             const editor = getEditor()
             const contents = editor.getContents()
 
@@ -104,7 +108,7 @@ export function SendMessage() {
                     ]
                 }}
 
-                    ref={(quill) => { quillInstance = quill }}
+                    ref={quillInstance}
                     theme='snow'
                     placeholder="Escreva sua mensagem"
                 />

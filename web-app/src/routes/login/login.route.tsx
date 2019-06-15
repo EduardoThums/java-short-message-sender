@@ -39,7 +39,7 @@ export function LoginPage() {
         } catch (error) {
             alertDispatch(new AddAlertAction({
                 text: 'Nome de Usuario ou Senha invalidos',
-                status: AlertStatus.DANGER 
+                status: AlertStatus.DANGER
             }))
         }
 

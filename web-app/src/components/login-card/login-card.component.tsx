@@ -5,6 +5,7 @@ import styles from './login-card.module.sass'
 
 import { SFormInput } from '../generics'
 import { Login } from '../../model'
+import { MSBlueIcon } from '../../resources';
 
 interface Props {
     login: (login: Login & { rememberMe: boolean }) => void
@@ -28,7 +29,7 @@ export function LoginCard({ login }: Props) {
 
         setRememberMe(checked)
     }
-    
+
     const doLogin = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
@@ -40,7 +41,7 @@ export function LoginCard({ login }: Props) {
 
     return (
         <div className={styles.loginCard}>
-            <span className={styles.title}> MESSAGE SENDER </span>
+            <MSBlueIcon className={styles.logo} />
             <form onSubmit={doLogin}>
                 <SFormInput<Login> type="text" id="username" handleChange={handleLoginInputChange} value={loginForm.username} label="Username" />
                 <SFormInput<Login> type="password" id="password" handleChange={handleLoginInputChange} value={loginForm.password} label="Password" />
@@ -52,7 +53,7 @@ export function LoginCard({ login }: Props) {
 
                 <div className={styles.buttons}>
                     <button > Login </button>
-                    <Link to="/sign-up"> Sign up </Link>
+                    <Link to="/sign-up"> Don't have an account? Sign up </Link>
                 </div>
             </form>
         </div>

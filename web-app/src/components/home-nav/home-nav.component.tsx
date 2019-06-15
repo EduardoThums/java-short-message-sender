@@ -2,7 +2,7 @@ import React, { useContext, useState, useRef } from 'react'
 
 import styles from './home-nav.module.sass'
 import { User } from '../../model';
-import { UserDefaultImage, HamMenuIcon } from '../../resources';
+import { UserDefaultImage, HamMenuIcon, MSWhiteIcon } from '../../resources';
 import { SidebarContext } from '../../context/contexts/sidebar.context';
 import { OpenSidebarAction } from '../../context/actions/sidebar.actions';
 
@@ -27,14 +27,14 @@ export function HomeNavbar({ user }: Props) {
                 <HamMenuIcon />
             </button>
 
-            <span className={styles.title}> MS </span>
+            <MSWhiteIcon className={styles.logo} />
 
             <div className={styles.user}>
                 <span> {user.username} </span>
                 <img ref={userImage} src={user.imageUrl || UserDefaultImage} alt="" onError={() => {
-                    if(userImage.current)
+                    if (userImage.current)
                         userImage.current.src = UserDefaultImage
-                }}/>
+                }} />
             </div>
         </nav>
     )

@@ -19,14 +19,8 @@ $cardColor: $surfaceColor
     
     padding: 10px
 
-    .title
-        font-size: 24px
-        color: $primaryColor
-        text-align: center
-        margin: 5px 0 15px 
-        font-weight: bold
-
-    
+    .logo
+        align-self: center
 
 
     form
@@ -77,9 +71,14 @@ $cardColor: $surfaceColor
 
         .buttons
             display: flex
+            flex-direction: column
 
-            *
+            button
                 @include materialButton()
+            
+            a
+                text-align: center
+                color: $primaryColor
 
     &::after
 

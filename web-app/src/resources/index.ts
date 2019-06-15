@@ -16,4 +16,7 @@ export { ReactComponent as BackArrowIcon } from './icons/arrow_back.icon.svg'
 export { ReactComponent as RefreshIcon } from './icons/refresh.icon.svg'
 export { ReactComponent as FilterIcon } from './icons/filter.icon.svg'
 
+export { ReactComponent as MSBlueIcon } from './icons/ms-blue.icon.svg'
+export { ReactComponent as MSWhiteIcon } from './icons/ms-white.icon.svg'
+
 export { default as UserDefaultImage } from './images/user.image.png'

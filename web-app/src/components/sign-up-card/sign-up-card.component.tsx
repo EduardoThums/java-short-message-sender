@@ -5,6 +5,7 @@ import styles from './sign-up-card.module.sass'
 import { SignUpForm } from '../../model';
 import { SFormInput } from '../generics';
 import { Link } from 'react-router-dom';
+import { MSBlueIcon } from '../../resources';
 
 interface Props {
     signUp(signUp: SignUpForm): void
@@ -12,7 +13,7 @@ interface Props {
 
 export function SignUpCard({ signUp }: Props) {
 
-    const [ signUpForm, setSignUpForm ] = useState<SignUpForm>({
+    const [signUpForm, setSignUpForm] = useState<SignUpForm>({
         username: '',
         password: '',
         repeatPassword: '',
@@ -32,14 +33,12 @@ export function SignUpCard({ signUp }: Props) {
         }))
     }
 
-    return ( 
+    return (
         <div className={styles.signUpCard}>
-            <span className={styles.title}> MESSAGE SENDER </span>
-
-            <span className={styles.subtitle}> Sign Up </span>
+            <MSBlueIcon className={styles.logo} />
 
             <form onSubmit={doSignUp}>
-            
+
                 <SFormInput<SignUpForm> type='text' id='username' label="Username" handleChange={handleFormChange} value={signUpForm.username} />
                 <SFormInput<SignUpForm> type='password' id='password' label="Password" handleChange={handleFormChange} value={signUpForm.password} />
                 <SFormInput<SignUpForm> type='password' id='repeatPassword' label="Confirm Password" handleChange={handleFormChange} value={signUpForm.repeatPassword} />
@@ -47,7 +46,7 @@ export function SignUpCard({ signUp }: Props) {
 
                 <div className={styles.buttons}>
                     <button > Sign Up </button>
-                    <Link to="/"> Sign In </Link>
+                    <Link to="/"> Already have an account? Sign In </Link>
                 </div>
             </form>
         </div>

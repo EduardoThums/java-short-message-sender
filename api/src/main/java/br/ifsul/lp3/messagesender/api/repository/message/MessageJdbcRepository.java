@@ -34,7 +34,7 @@ public class MessageJdbcRepository {
         String where = "WHERE u.id = :loggedUserId ";
 
         if (messageJdbcCriteria.getSenderUsername() != null) {
-            where += "AND u.username ILIKE concat(:username, '%') ";
+            where += "AND m.sender_id IN (SELECT u.id FROM \"user\" u WHERE u.username ILIKE concat(:username, '%')) ";
         }
 
         if (messageJdbcCriteria.getSubject() != null) {

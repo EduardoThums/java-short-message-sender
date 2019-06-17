@@ -25,7 +25,7 @@ export function UserSearchSidebar({ open, closeSidebar, selectUser }: Props) {
         totalElements: false,
         numberOfElements: 0,
         first: true,
-        last: false,
+        last: true,
         pageable: {
             offset: 0,
             pageNumber: 0,
@@ -77,8 +77,8 @@ export function UserSearchSidebar({ open, closeSidebar, selectUser }: Props) {
         }
     }
 
-    const getPagedUsers = async () => search ? 
-        await userService.getPagedUsersByUsername({ page: page, username: search }) : 
+    const getPagedUsers = async () => search ?
+        await userService.getPagedUsersByUsername({ page: page, username: search }) :
         await userService.getUsersByPage(page)
 
     return (

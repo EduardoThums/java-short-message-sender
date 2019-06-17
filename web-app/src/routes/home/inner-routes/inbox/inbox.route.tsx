@@ -3,10 +3,11 @@ import React, { useState, useEffect, useContext } from 'react'
 import styles from './inbox.module.sass'
 import { messageService } from '../../../../services';
 import { MessageReceived } from '../../../../model/message.model';
-import { Paged } from '../../../../model';
+import { Paged, MessageFilter } from '../../../../model';
 import { ArrowLeftIcon, ArrowRightIcon, RefreshIcon, FilterIcon } from '../../../../resources';
 import { ReceivedMessage } from '../../../../components/received-message/received-message.component';
 import { __RouterContext } from 'react-router';
+import { FilterModal } from '../../../../components/filter-modal/filter-modal.component';
 
 export function Inbox() {
 
@@ -20,7 +21,7 @@ export function Inbox() {
         totalElements: false,
         numberOfElements: 0,
         first: true,
-        last: false,
+        last: true,
         pageable: {
             offset: 0,
             pageNumber: 0,
@@ -41,12 +42,23 @@ export function Inbox() {
         },
         totalPages: 0
     })
+    const [isFilterOpen, setFilterOpen] = useState(false)
+    const [filter, setFilter] = useState<MessageFilter>({
+        username: '',
+        subject: '',
+    })
 
     useEffect(() => {
-        messageService.findReceivedMessages(page).then((received) => {
+        messageService.findReceivedMessages(page, filter).then((received) => {
             setReceivedMessages(received)
         })
     }, [page])
+
+    useEffect(() => {
+        messageService.findReceivedMessages(0, filter).then((received) => {
+            setReceivedMessages(received)
+        })
+    }, [filter])
 
     const renderMessages = () => receivedMessages.content.map((m, key) => (
         <ReceivedMessage receivedMessage={m} onClick={() => { goToMessage(m.id) }} key={key} />
@@ -63,7 +75,14 @@ export function Inbox() {
     }
 
     const refreshReceivedMessages = () => {
-        messageService.findReceivedMessages(page).then((received) => {
+        setFilter({
+            username: '',
+            subject: ''
+        })
+        messageService.findReceivedMessages(page, {
+            username: '',
+            subject: ''
+        }).then((received) => {
             setReceivedMessages(received)
         })
     }
@@ -73,42 +92,54 @@ export function Inbox() {
             setPage(p => p - 1)
         }
     }
-    
+
+    const closeModal = () => {
+        setFilterOpen(false)
+    }
+
+    const openModal = () => {
+        setFilterOpen(true)
+    }
 
     return (
-        <div className={styles.inboxCard}>
-            <header>
-                <span> CAIXA DE ENTRADA </span>
-                <div className={styles.buttons}>
-                    <button>
-                        <FilterIcon />  
+        <>
+            <FilterModal filterState={[filter, setFilter]} modalState={{ isOpen: isFilterOpen, closeModal }} />
+            <div className={styles.inboxCard}>
+                <header>
+                    <span> CAIXA DE ENTRADA </span>
+                    <div className={styles.buttons}>
+                        <button
+                            onClick={openModal}
+                        >
+                            <FilterIcon />
+                        </button>
+                        <button
+                            onClick={refreshReceivedMessages}
+                        >
+                            <RefreshIcon />
+                        </button>
+                    </div>
+                </header>
+
+                <section>
+                    {renderMessages()}
+                </section>
+
+                <footer>
+                    <button
+                        disabled={receivedMessages.first}
+                        onClick={goPreviousPage}
+                    >
+                        <ArrowLeftIcon />
                     </button>
                     <button
-                        onClick={refreshReceivedMessages}
+                        disabled={receivedMessages.last}
+                        onClick={goNextPage}
                     >
-                        <RefreshIcon />
+                        <ArrowRightIcon />
                     </button>
-                </div>
-            </header>
-
-            <section>
-                {renderMessages()}
-            </section>
-
-            <footer>
-                <button
-                    disabled={receivedMessages.first}
-                    onClick={goPreviousPage}
-                >
-                    <ArrowLeftIcon />
-                </button>
-                <button
-                    disabled={receivedMessages.last}
-                    onClick={goNextPage}
-                >
-                    <ArrowRightIcon />
-                </button>
-            </footer>
-        </div>
+                </footer>
+            </div>
+        </>
     )
 }

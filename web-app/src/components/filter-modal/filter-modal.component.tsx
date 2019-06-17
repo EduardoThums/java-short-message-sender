@@ -18,7 +18,7 @@ export function FilterModal({ filterState, modalState }: Props) {
     const { isOpen, closeModal } = modalState
 
 
-    const handleFilterChange = ({ value,id }: { value: string, id: keyof MessageFilter & string }) => {
+    const handleFilterChange = ({ value, id }: { value: string, id: keyof MessageFilter & string }) => {
         setFilter((prev) => (
             {
                 ...prev,
@@ -26,12 +26,12 @@ export function FilterModal({ filterState, modalState }: Props) {
             }
         ))
     }
-    
+
     return (
-        <div className={`${styles.modal} ${isOpen ? styles.open : styles.closed }`}>
-            <div className={styles.emptyScreen} onClick={closeModal}/>
+        <div className={`${styles.modal} ${isOpen ? styles.open : styles.closed}`}>
+            <div className={styles.emptyScreen} onClick={closeModal} />
             <div className={styles.modalBody}>
-                <span> Filter Messages </span>
+                <span className={styles.title}> Filter Messages </span>
 
                 <SFormInput<MessageFilter> id='username' handleChange={handleFilterChange} value={filter.username} type="text" label="Sender Username" />
                 <SFormInput<MessageFilter> id='subject' handleChange={handleFilterChange} value={filter.subject} type="text" label="Message Subject" />

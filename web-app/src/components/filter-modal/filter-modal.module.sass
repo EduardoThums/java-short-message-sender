@@ -1,0 +1,121 @@
+@import "variables"
+@import "mixins"
+
+    
+$cardSize: 325px
+$cardColor: $surfaceColor
+
+.modal
+    position: fixed
+    height: 100vh
+    width: 100vw
+    align-items: center
+    justify-content: center
+    z-index: 1000
+
+    transition: .4s
+
+    .emptyScreen
+        position: absolute
+        height: 100%
+        width: 100%
+    
+    .modalBody
+        position: relative
+        display: flex
+        flex-direction: column
+
+        align-items: center
+        justify-content: center
+
+        background: $cardColor
+
+        width: $cardSize
+
+        height: $cardSize
+
+
+        filter: drop-shadow( 0 0 10px rgba($color: #000000, $alpha: .2))
+        
+        padding: 10px
+
+
+        .title
+            position: absolute
+            text-align: center
+            font-size: 28px
+            font-weight: bold
+            color: $primaryColor
+
+            top: 20px
+        
+        &::after
+
+            content: ''
+            position: absolute
+            height: 0
+            width: 0
+            border-bottom: calc(#{($cardSize / 2) - 50px}) solid $cardColor
+            border-right: calc(#{$cardSize / 2}) solid transparent
+            border-top: calc(#{$cardSize / 2}) solid transparent
+            border-left: calc(#{$cardSize / 2}) solid transparent
+            top: 0
+            right: 0
+            transform: translateY(-100%)
+
+        &::before
+            content: ''
+            position: absolute
+            height: 0
+            width: 0
+            border-bottom: calc(#{$cardSize / 2}) solid transparent
+            border-right: calc(#{$cardSize / 2}) solid transparent
+            border-top: calc(#{($cardSize / 2) - 50px}) solid $cardColor
+            border-left: calc(#{$cardSize / 2}) solid transparent
+            bottom: 0
+            left: 0
+            transform: translateY(100%)
+
+    &.open
+        display: flex
+        top: 0
+        animation: darkningModalBackground .5s linear forwards
+    
+    &.closed
+        display: flex
+        top: 100vh
+    
+@media only screen and (max-width: 650px) 
+    .modalBody
+        width: calc(#{$cardSize - 50px})
+        height: calc(#{$cardSize - 50px})
+
+        &::before
+            display: none
+            border: none
+
+        &::after
+            display: none
+            border: none
+
+@media only screen and (max-height: 550px) and (max-width: 800px) 
+    .modalBody
+        position: absolute !important
+        bottom: 0
+        right: inherit
+        left: inherit
+        border-top-left-radius: 10px
+        border-top-right-radius: 10px 
+
+        &::before
+            border: none
+
+        &::after
+            border: none
+
+@keyframes darkningModalBackground
+    80%    
+        background: transparent
+
+    100%
+        background: rgba($color: #000, $alpha: .4)

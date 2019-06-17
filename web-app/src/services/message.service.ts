@@ -1,6 +1,6 @@
 import { MessageToSend, MessageReceived } from "../model/message.model";
 import { api } from "./api.service";
-import { Paged } from "../model";
+import { Paged, MessageFilter } from "../model";
 
 
 
@@ -14,8 +14,8 @@ export const messageService = {
         const response = await api.get<MessageReceived>(`/message/find-by-id/${id}`)
         return response.data
     },
-    findReceivedMessages: async (page: number) => {
-        const response = await api.get<Paged<MessageReceived>>(`/message/find-all/received?page=${page}`)
+    findReceivedMessages: async (page: number, filter: MessageFilter) => {
+        const response = await api.get<Paged<MessageReceived>>(`/message/find-all/received?page=${page}`, { data: filter })
         return response.data
     },
     sendMessage: async (message: MessageToSend) => {

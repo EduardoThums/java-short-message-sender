@@ -43,17 +43,17 @@ export function LoginCard({ login }: Props) {
         <div className={styles.loginCard}>
             <MSBlueIcon className={styles.logo} />
             <form onSubmit={doLogin}>
-                <SFormInput<Login> type="text" id="username" handleChange={handleLoginInputChange} value={loginForm.username} label="Username" />
-                <SFormInput<Login> type="password" id="password" handleChange={handleLoginInputChange} value={loginForm.password} label="Password" />
+                <SFormInput<Login> type="text" id="username" handleChange={handleLoginInputChange} value={loginForm.username} label="Nome de Usuario" />
+                <SFormInput<Login> type="password" id="password" handleChange={handleLoginInputChange} value={loginForm.password} label="Senha" />
 
                 <label className={styles.checkbox}>
                     <input type="checkbox" checked={rememberMe} onChange={handleRememberMeChange} />
-                    <span>Remember Me</span>
+                    <span>Lembre-me</span>
                 </label>
 
                 <div className={styles.buttons}>
-                    <button > Login </button>
-                    <Link to="/sign-up"> Don't have an account? Sign up </Link>
+                    <button > Entrar </button>
+                    <Link to="/sign-up"> Não possui conta? Cadastre-se </Link>
                 </div>
             </form>
         </div>

@@ -28,9 +28,9 @@ export function HomePage({ match }: RouteComponentProps) {
     return (
         <>
             <CollapsibleSidebar links={[
-                { to: match.url, name: "Home" },
-                { to: `${match.url}/inbox`, name: "Inbox" },
-                { to: `${match.url}/send`, name: "Send Message" },
+                { to: match.url, name: "Pag. Inicial" },
+                { to: `${match.url}/inbox`, name: "Caixa de Entrada" },
+                { to: `${match.url}/send`, name: "Mandar Mensagem" },
             ]} actualPage={location.pathname} />
             <div className={styles.homePage}>
                 <HomeNavbar user={user || { username: '', imageUrl: '' }} />

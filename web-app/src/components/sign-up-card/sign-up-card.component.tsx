@@ -39,14 +39,14 @@ export function SignUpCard({ signUp }: Props) {
 
             <form onSubmit={doSignUp}>
 
-                <SFormInput<SignUpForm> type='text' id='username' label="Username" handleChange={handleFormChange} value={signUpForm.username} />
-                <SFormInput<SignUpForm> type='password' id='password' label="Password" handleChange={handleFormChange} value={signUpForm.password} />
-                <SFormInput<SignUpForm> type='password' id='repeatPassword' label="Confirm Password" handleChange={handleFormChange} value={signUpForm.repeatPassword} />
-                <SFormInput<SignUpForm> type='text' id='imageUrl' label="Your image's URL" handleChange={handleFormChange} value={signUpForm.imageUrl} />
+                <SFormInput<SignUpForm> type='text' id='username' label="Nome de Usuario" handleChange={handleFormChange} value={signUpForm.username} />
+                <SFormInput<SignUpForm> type='password' id='password' label="Senha" handleChange={handleFormChange} value={signUpForm.password} />
+                <SFormInput<SignUpForm> type='password' id='repeatPassword' label="Confirme a Senha" handleChange={handleFormChange} value={signUpForm.repeatPassword} />
+                <SFormInput<SignUpForm> type='text' id='imageUrl' label="URL da sua imagem" handleChange={handleFormChange} value={signUpForm.imageUrl} />
 
                 <div className={styles.buttons}>
-                    <button > Sign Up </button>
-                    <Link to="/"> Already have an account? Sign In </Link>
+                    <button > Cadastrar </button>
+                    <Link to="/"> Ja possui conta? Entre </Link>
                 </div>
             </form>
         </div>

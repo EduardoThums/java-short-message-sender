@@ -15,7 +15,7 @@ export const messageService = {
         return response.data
     },
     findReceivedMessages: async (page: number, filter: MessageFilter) => {
-        const response = await api.get<Paged<MessageReceived>>(`/message/find-all/received?page=${page}`, { data: filter })
+        const response = await api.get<Paged<MessageReceived>>(`/message/find-all/received?page=${page}${filter.username ? `&username=${filter.username}` : ''}${filter.subject ? `&subject=${filter.subject}` : ''}`)
         return response.data
     },
     sendMessage: async (message: MessageToSend) => {

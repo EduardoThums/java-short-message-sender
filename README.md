@@ -39,5 +39,5 @@ A aplicação tambem possui uma interface web usando React, Typescript e SASS qu
      * Então a aplicação pode ser rodada em local com o comando `npm start` ou `yarn start` ou compilada com o comando `npm run build` ou `yarn build`
 
 ## Contribuidores
-Eduardo Cristiano Thums\
-Patrick Dorneles
+[Eduardo Thums](https://github.com/EduardoThums)\
+[Patrick Dorneles](https://github.com/PatrickDorneles)

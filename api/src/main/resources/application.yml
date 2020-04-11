@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/java_short_message_service
+    url: jdbc:postgresql://localhost:5432/java-short-message-service
     username: postgres
-    password: root
+    password: nHcEkDMab9jgCQZJ
   jpa:
     database: postgresql
     properties:
@@ -12,7 +12,7 @@ spring:
           use_jdbc_metadata_defaults: false
 security:
   jwt:
-    secret: "message-sender-java-jwt"
+    secret: "1EABB71CBCCCA98154079DD31ADD619F941CC6D935EBD8DCDEDDBC631AD9A18141F8C08D58CFEAB104D43AED52BFADFC867F92BDAD8EAE9E3CFD9E74971653D2"
     expiration: 86400000
   public:
     path: "/public/**"

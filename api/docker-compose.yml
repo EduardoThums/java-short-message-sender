@@ -1,0 +1,23 @@
+version: "2"
+
+services:
+  api:
+    container_name: java-short-message-sender-api
+    build: ./
+    ports:
+      - 8080:8080
+
+  database:
+    container_name: java-short-message-sender-database
+    image: postgres:9.6
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: "nHcEkDMab9jgCQZJ"
+      POSTGRES_DB: "java-short-message-service"
+    volumes:
+      - ./src/main/resources/database:/docker-entrypoint-initdb.d
+      - javashortmessagesender-data:/var/lib/postgresql/data
+
+volumes:
+  javashortmessagesender-data:

@@ -26,17 +26,13 @@ A aplicação tambem possui uma interface web usando React, Typescript e SASS qu
 ## Instalação
    * **Requisitos**
      * Java 8 instalado no computador
-     * IDE capaz de compilar em Java
-     * Postgresql instalado no computador
      * Node instalado no computador
    * **Back-end**
-     * Importe o projeto para IDE de sua escolha.
-     * Vá até a pasta scripts dentro do projeto e execute o arquivo chamado database.sql dentro do Workbench de sua escolha.
-     * Rode a aplicação.
+     * ```make run-api```
    * **Front-end**
-     * Siga com o terminal até a pasta do projeto
-     * Instale as dependencias com o comando `npm i` ou `yarn`
-     * Então a aplicação pode ser rodada em local com o comando `npm start` ou `yarn start` ou compilada com o comando `npm run build` ou `yarn build`
+     * ```cd ./web-app```
+     * ```npm i``` ou ```yarn```
+     * ```npm run build``` ou ```yarn build```
 
 ## Contribuidores
 [Eduardo Thums](https://github.com/EduardoThums)\
